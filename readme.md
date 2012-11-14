@@ -6,7 +6,7 @@ Leaflet.MiniMap is a simple minimap control that you can drop into your leaflet 
 
 The control can be inserted in two lines: First you have to construct a layer for it to use, and then you create and attach the minimap control. (Don't reuse the layer you added to the main map, strange behaviour will ensue...)
 
-From the example:
+From the [example](http://norkart.github.com/Leaflet-MiniMap/example.html):
     
     var osm2 = new L.TileLayer(osmUrl, {minZoom: 2, maxZoom: 18, attribution: osmAttrib});
     var miniMap = new L.Control.MiniMap(osm2).addTo(map);
