@@ -1,0 +1,10 @@
+.leaflet-control-minimap {
+	height:150px;
+	width:150px;
+	border:solid rgba(255, 255, 255, 0.7) 3px;
+	box-shadow: 0 1px 7px #999;
+	background: #f8f8f9;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
