@@ -20,4 +20,6 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 `zoomLevelOffset:` The offset applied to the zoom in the minimap compared to the zoom of the main map. Can be positive or negative, defaults to -5.
 
+`zoomLevelFixed:` Overrides the offset to apply a fixed zoom level to the minimap regardless of the main map zoom. Set it to any valid zoom level, if unset `zoomLevelOffset` is used instead.
+
 `zoomAnimation:` Sets whether the minimap should have an animated zoom. (Will cause it to lag a bit after the movement of the main map.) Defaults to false.
