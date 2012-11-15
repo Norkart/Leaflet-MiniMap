@@ -16,6 +16,7 @@ L.Control.MiniMap = L.Control.extend({
 
 		this._container = L.DomUtil.create('div', 'leaflet-control-minimap');
 		L.DomEvent.disableClickPropagation(this._container);
+		L.DomEvent.on(this._container, 'mousewheel', L.DomEvent.stopPropagation);
 
 		this._miniMap = new L.Map(this._container, 
 		{
