@@ -47,6 +47,7 @@ L.Control.MiniMap = L.Control.extend({
 		this._miniMapMoving = false;
 
 		this._mainMap.on('moveend', this._onMainMapMoved, this);
+		this._mainMap.on('move', this._onMainMapMoving, this);
 		this._miniMap.on('moveend', this._onMiniMapMoved, this);
 
 		return this._container;
@@ -63,6 +64,10 @@ L.Control.MiniMap = L.Control.extend({
 		} else {
 			this._miniMapMoving = false;
 		}
+		this._aimingRect.setBounds(this._mainMap.getBounds());
+	},
+
+	_onMainMapMoving: function (e) {
 		this._aimingRect.setBounds(this._mainMap.getBounds());
 	},
 
