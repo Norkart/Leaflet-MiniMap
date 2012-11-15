@@ -18,6 +18,10 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 `position:` The standard Leaflet.Control position parameter, used like all the other controls. Defaults to 'bottomright'.
 
+`width:` The width of the minimap in pixels. Defaults to 150.
+
+`height:` The height of the minimap in pixels. Defaults to 150.
+
 `zoomLevelOffset:` The offset applied to the zoom in the minimap compared to the zoom of the main map. Can be positive or negative, defaults to -5.
 
 `zoomLevelFixed:` Overrides the offset to apply a fixed zoom level to the minimap regardless of the main map zoom. Set it to any valid zoom level, if unset `zoomLevelOffset` is used instead.

@@ -3,7 +3,9 @@ L.Control.MiniMap = L.Control.extend({
 		position: 'bottomright',
 		zoomLevelOffset: -5,
 		zoomLevelFixed: false,
-		zoomAnimation: false
+		zoomAnimation: false,
+		width: 150,
+		height: 150
 	},
 	//layer is the map layer to be shown in the minimap
 	initialize: function (layer, options) {
@@ -17,6 +19,8 @@ L.Control.MiniMap = L.Control.extend({
 
 		//Creating the container and stopping events from spilling through to the main map.
 		this._container = L.DomUtil.create('div', 'leaflet-control-minimap');
+		this._container.style.width = this.options.width + 'px';
+		this._container.style.height = this.options.height + 'px';
 		L.DomEvent.disableClickPropagation(this._container);
 		L.DomEvent.on(this._container, 'mousewheel', L.DomEvent.stopPropagation);
 
