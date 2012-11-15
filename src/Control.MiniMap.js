@@ -1,22 +1,22 @@
 L.Control.MiniMap = L.Control.extend({
-    options: {
-        position: 'bottomright',
+	options: {
+		position: 'bottomright',
 		zoomLevelOffset: -5,
 		zoomAnimation: false
-    },
+	},
 	//layer is the map layer to be shown in the minimap
-    initialize: function (layer, options) {
-        L.Util.setOptions(this, options);
+	initialize: function (layer, options) {
+		L.Util.setOptions(this, options);
 		this._layer = layer;
-    },
+	},
 
-    onAdd: function (map) {
-	
+	onAdd: function (map) {
+
 		this._mainMap = map;
 
-        this._container = L.DomUtil.create('div', 'leaflet-control-minimap');
-        L.DomEvent.disableClickPropagation(this._container);
-		
+		this._container = L.DomUtil.create('div', 'leaflet-control-minimap');
+		L.DomEvent.disableClickPropagation(this._container);
+
 		this._miniMap = new L.Map(this._container, 
 		{
 			attributionControl: false, 
@@ -30,23 +30,23 @@ L.Control.MiniMap = L.Control.extend({
 		* to calculate tile positions properly and you get a corrupted map. Defer this one millisecond so that this
 		* method finishes and the DOM catches up, and it works fine. */
 		setTimeout(L.Util.bind(function () 
-			{	
+			{
 				this._miniMap.setView(this._mainMap.getCenter(), this._mainMap.getZoom() + this.options.zoomLevelOffset);
 			}, this), 1);
-			
+
 		//These bools are used to prevent infinite loops of the two maps notifying each other that they've moved.
 		this._mainMapMoving = false;
 		this._miniMapMoving = false;
-		
+
 		this._mainMap.on('moveend', this._onMainMapMoved, this);
 		this._miniMap.on('moveend', this._onMiniMapMoved, this);
 
-        return this._container;
-    },
+		return this._container;
+	},
 
-    onRemove: function (map) {
-        map.off('moveend', this._onMainMapMoved)
-    },
+	onRemove: function (map) {
+		map.off('moveend', this._onMainMapMoved)
+	},
 	
 	_onMainMapMoved: function (e) {
 		if (!this._miniMapMoving) {
@@ -56,7 +56,7 @@ L.Control.MiniMap = L.Control.extend({
 			this._miniMapMoving = false;
 		}
 	},
-	
+
 	_onMiniMapMoved: function (e) {
 	if (!this._mainMapMoving) {
 			this._miniMapMoving = true;
