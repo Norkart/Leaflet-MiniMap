@@ -39,6 +39,7 @@ L.Control.MiniMap = L.Control.extend({
 		setTimeout(L.Util.bind(function () 
 			{
 				this._miniMap.setView(this._mainMap.getCenter(), this._decideZoom(true));
+				this._aimingRect = L.rectangle(this._mainMap.getBounds(), {color: "#ff7800", weight: 1}).addTo(this._miniMap);
 			}, this), 1);
 
 		//These bools are used to prevent infinite loops of the two maps notifying each other that they've moved.
@@ -62,6 +63,7 @@ L.Control.MiniMap = L.Control.extend({
 		} else {
 			this._miniMapMoving = false;
 		}
+		this._aimingRect.setBounds(this._mainMap.getBounds());
 	},
 
 	_onMiniMapMoved: function (e) {
