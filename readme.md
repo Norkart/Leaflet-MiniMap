@@ -8,7 +8,7 @@ The control can be inserted in two lines: First you have to construct a layer fo
 
 From the [example](http://norkart.github.com/Leaflet-MiniMap/example.html):
     
-    var osm2 = new L.TileLayer(osmUrl, {minZoom: 2, maxZoom: 18, attribution: osmAttrib});
+    var osm2 = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 13, attribution: osmAttrib});
     var miniMap = new L.Control.MiniMap(osm2).addTo(map);
 
 As the minimap control inherits from leaflet's control, positioning is handled automatically by leaflet. However, you can still style the minimap and set its size by modifying the css file.
