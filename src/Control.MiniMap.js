@@ -58,7 +58,9 @@ L.Control.MiniMap = L.Control.extend({
 	},
 
 	onRemove: function (map) {
-		map.off('moveend', this._onMainMapMoved)
+		this._mainMap.off('moveend', this._onMainMapMoved, this);
+		this._mainMap.off('move', this._onMainMapMoving, this);
+		this._miniMap.off('moveend', this._onMiniMapMoved, this);
 	},
 	
 	_onMainMapMoved: function (e) {
