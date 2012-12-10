@@ -24,6 +24,7 @@ L.Control.MiniMap = L.Control.extend({
 		L.DomEvent.disableClickPropagation(this._container);
 		L.DomEvent.on(this._container, 'mousewheel', L.DomEvent.stopPropagation);
 
+
 		this._miniMap = new L.Map(this._container, 
 		{
 			attributionControl: false, 
@@ -34,7 +35,8 @@ L.Control.MiniMap = L.Control.extend({
 			doubleClickZoom: !this.options.zoomLevelFixed,
 			boxZoom: !this.options.zoomLevelFixed,
 		});
-		this._miniMap.addLayer(this._layer);
+		//We make a copy so that the original layer object is untouched, this way we can add/remove multiple times
+		this._miniMap.addLayer(L.Util.clone (this._layer));
 
 		/*Curious workaround: For some reason (possibly the DOM not being completely set up so that the map window
 		* is not actually drawn yet?) if you set the view here the minimap window will not manage
@@ -61,6 +63,7 @@ L.Control.MiniMap = L.Control.extend({
 		this._mainMap.off('moveend', this._onMainMapMoved, this);
 		this._mainMap.off('move', this._onMainMapMoving, this);
 		this._miniMap.off('moveend', this._onMiniMapMoved, this);
+
 	},
 	
 	_onMainMapMoved: function (e) {
@@ -99,7 +102,6 @@ L.Control.MiniMap = L.Control.extend({
 				return this._mainMap.getZoom();
 		}
 	}
-
 });
 
 L.Map.mergeOptions({
@@ -114,4 +116,17 @@ L.Map.addInitHook(function () {
 
 L.control.minimap = function (options) {
 	return new L.Control.MiniMap(options);
+};
+
+//Simple helper function for cloning
+L.Util.clone = function (o){
+	if(o == null || typeof(o) != 'object')
+		return o;
+
+	var c = new o.constructor();
+	//Deep clone recursively
+	for(var k in o)
+		c[k] = L.Util.clone(o[k]);
+
+	return c;
 };
