@@ -1,6 +1,7 @@
 L.Control.MiniMap = L.Control.extend({
 	options: {
 		position: 'bottomright',
+		toggleDisplay: false,
 		zoomLevelOffset: -5,
 		zoomLevelFixed: false,
 		zoomAnimation: false,
@@ -46,8 +47,10 @@ L.Control.MiniMap = L.Control.extend({
 			{
 				this._miniMap.setView(this._mainMap.getCenter(), this._decideZoom(true));
 				this._aimingRect = L.rectangle(this._mainMap.getBounds(), {color: "#ff7800", weight: 1, clickable: false}).addTo(this._miniMap);
+				this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(
+				        '-', 'Hide', 'leaflet-control-minimap-toggle-display',  this._container, this._toggleDisplay,  this) : undefined;
 			}, this), 1);
-
+		
 		//These bools are used to prevent infinite loops of the two maps notifying each other that they've moved.
 		this._mainMapMoving = false;
 		this._miniMapMoving = false;
@@ -58,12 +61,34 @@ L.Control.MiniMap = L.Control.extend({
 
 		return this._container;
 	},
-
+	
 	onRemove: function (map) {
 		this._mainMap.off('moveend', this._onMainMapMoved, this);
 		this._mainMap.off('move', this._onMainMapMoving, this);
 		this._miniMap.off('moveend', this._onMiniMapMoved, this);
 
+	},
+	
+	_createButton: function (html, title, className, container, fn, context) {
+		var link = L.DomUtil.create('a', className, container);
+		link.innerHTML = html;
+		link.href = '#';
+		link.title = title;
+
+		var stop = L.DomEvent.stopPropagation;
+
+		L.DomEvent
+		    .on(link, 'click', stop)
+		    .on(link, 'mousedown', stop)
+		    .on(link, 'dblclick', stop)
+		    .on(link, 'click', L.DomEvent.preventDefault)
+		    .on(link, 'click', fn, context);
+
+		return link;
+	},
+	
+	_toggleDisplay: function () {
+		
 	},
 	
 	_onMainMapMoved: function (e) {
