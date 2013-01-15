@@ -34,7 +34,7 @@ L.Control.MiniMap = L.Control.extend({
 			touchZoom: !this.options.zoomLevelFixed,
 			scrollWheelZoom: !this.options.zoomLevelFixed,
 			doubleClickZoom: !this.options.zoomLevelFixed,
-			boxZoom: !this.options.zoomLevelFixed,
+			boxZoom: !this.options.zoomLevelFixed
 		});
 		//We make a copy so that the original layer object is untouched, this way we can add/remove multiple times
 		this._miniMap.addLayer(L.Util.clone (this._layer));
@@ -47,8 +47,9 @@ L.Control.MiniMap = L.Control.extend({
 			{
 				this._miniMap.setView(this._mainMap.getCenter(), this._decideZoom(true));
 				this._aimingRect = L.rectangle(this._mainMap.getBounds(), {color: "#ff7800", weight: 1, clickable: false}).addTo(this._miniMap);
-				this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(
-				        '-', 'Hide', 'leaflet-control-minimap-toggle-display',  this._container, this._toggleDisplay,  this) : undefined;
+				if (this.options.toggleDisplay) {
+					this._addToggleButton();
+				}
 			}, this), 1);
 		
 		//These bools are used to prevent infinite loops of the two maps notifying each other that they've moved.
@@ -67,6 +68,12 @@ L.Control.MiniMap = L.Control.extend({
 		this._mainMap.off('move', this._onMainMapMoving, this);
 		this._miniMap.off('moveend', this._onMiniMapMoved, this);
 
+	},
+	
+	_addToggleButton: function () {
+		this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(
+		        '', 'Hide', 'leaflet-control-minimap-toggle-display minimize',  this._container, this._toggleDisplay,  this) : undefined;
+		this._minimized = false;
 	},
 	
 	_createButton: function (html, title, className, container, fn, context) {
@@ -88,7 +95,16 @@ L.Control.MiniMap = L.Control.extend({
 	},
 	
 	_toggleDisplay: function () {
-		
+		if (!this._minimized) {
+			this._container.style.width = '19px';
+			this._container.style.height = '19px';
+			this._minimized = true;
+		}
+		else {
+			this._container.style.width = this.options.width + 'px';
+			this._container.style.height = this.options.height + 'px';
+			this._minimized = false;
+		}
 	},
 	
 	_onMainMapMoved: function (e) {

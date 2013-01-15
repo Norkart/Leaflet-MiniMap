@@ -6,3 +6,20 @@
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
 }
+
+.leaflet-control-minimap a {
+    background-color: rgba(255, 255, 255, 0.75);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.leaflet-control-minimap-toggle-display {
+	background-image: url("http://cdn.leafletjs.com/leaflet-0.4.5/images/zoom-out.png");
+	border-radius: 4px 4px 4px 4px;
+    height: 19px;
+    width: 19px;
+	position: absolute;
+	bottom: 0;
+	right: 0; 
+}
