@@ -1,10 +1,10 @@
 .leaflet-control-minimap {
-	border:solid rgba(255, 255, 255, 0.7) 3px;
-	box-shadow: 0 1px 7px #999;
-	background: #f8f8f9;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
+    border:solid rgba(255, 255, 255, 0.7) 3px;
+    box-shadow: 0 1px 7px #999;
+    background: #f8f8f9;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
 }
 
 .leaflet-control-minimap a {
@@ -21,11 +21,11 @@
 }
 
 .leaflet-control-minimap-toggle-display {
-	background-image: url("images/toggle.png");
-	border-radius: 4px 4px 4px 4px;
+    background-image: url("images/toggle.png");
+    border-radius: 4px 4px 4px 4px;
     height: 19px;
     width: 19px;
-	position: absolute;
-	bottom: 0;
-	right: 0; 
+    position: absolute;
+    bottom: 0;
+    right: 0; 
 }
