@@ -31,7 +31,7 @@
         
 		//Plugin magic goes here! Note that you cannot use the same layer object again, as that will confuse the two map controls
 		var osm2 = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 13, attribution: osmAttrib });
-		var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: true }).addTo(map);
+		var miniMap = new L.Control.MiniMap(osm2).addTo(map);
     </script>
 </body>
 </html>
