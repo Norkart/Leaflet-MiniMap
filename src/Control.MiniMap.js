@@ -26,10 +26,10 @@ L.Control.MiniMap = L.Control.extend({
 		L.DomEvent.on(this._container, 'mousewheel', L.DomEvent.stopPropagation);
 
 
-		this._miniMap = new L.Map(this._container, 
+		this._miniMap = new L.Map(this._container,
 		{
-			attributionControl: false, 
-			zoomControl: false, 
+			attributionControl: false,
+			zoomControl: false,
 			zoomAnimation: this.options.zoomAnimation,
 			touchZoom: !this.options.zoomLevelFixed,
 			scrollWheelZoom: !this.options.zoomLevelFixed,
@@ -39,28 +39,27 @@ L.Control.MiniMap = L.Control.extend({
 		//We make a copy so that the original layer object is untouched, this way we can add/remove multiple times
 		this._miniMap.addLayer(L.Util.clone (this._layer));
 
-		/*Curious workaround: For some reason (possibly the DOM not being completely set up so that the map window
-		* is not actually drawn yet?) if you set the view here the minimap window will not manage
-		* to calculate tile positions properly and you get a corrupted map. Defer this one millisecond so that this
-		* method finishes and the DOM catches up, and it works fine. */
-		setTimeout(L.Util.bind(function () 
-			{
-				this._miniMap.setView(this._mainMap.getCenter(), this._decideZoom(true));
-				this._aimingRect = L.rectangle(this._mainMap.getBounds(), {color: "#ff7800", weight: 1, clickable: false}).addTo(this._miniMap);
-				if (this.options.toggleDisplay) {
-					this._addToggleButton();
-				}
-			}, this), 1);
-		
 		//These bools are used to prevent infinite loops of the two maps notifying each other that they've moved.
 		this._mainMapMoving = false;
 		this._miniMapMoving = false;
 
-		this._mainMap.on('moveend', this._onMainMapMoved, this);
-		this._mainMap.on('move', this._onMainMapMoving, this);
-		this._miniMap.on('moveend', this._onMiniMapMoved, this);
+		if (this.options.toggleDisplay) {
+			this._addToggleButton();
+		}
+
+		this._miniMap.whenReady(L.Util.bind(function () {
+			this._aimingRect = L.rectangle(this._mainMap.getBounds(), {color: "#ff7800", weight: 1, clickable: false}).addTo(this._miniMap);
+			this._mainMap.on('moveend', this._onMainMapMoved, this);
+			this._mainMap.on('move', this._onMainMapMoving, this);
+			this._miniMap.on('moveend', this._onMiniMapMoved, this);
+		}, this));
 
 		return this._container;
+	},
+
+	addTo: function (map) {
+		L.Control.prototype.addTo.call(this, map);
+		this._miniMap.setView(this._mainMap.getCenter(), this._decideZoom(true));
 	},
 	
 	onRemove: function (map) {
