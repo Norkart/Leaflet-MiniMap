@@ -60,6 +60,7 @@ L.Control.MiniMap = L.Control.extend({
 	addTo: function (map) {
 		L.Control.prototype.addTo.call(this, map);
 		this._miniMap.setView(this._mainMap.getCenter(), this._decideZoom(true));
+		return this;
 	},
 	
 	onRemove: function (map) {
