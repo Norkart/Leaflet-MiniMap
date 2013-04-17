@@ -55,8 +55,11 @@ L.Control.MiniMap = L.Control.extend({
 
 		this._miniMap.whenReady(L.Util.bind(function () {
 			this._aimingRect = L.rectangle(this._mainMap.getBounds(), {color: "#ff7800", weight: 1, clickable: false}).addTo(this._miniMap);
+			this._shadowRect = L.rectangle(this._mainMap.getBounds(), {color: "#000000", weight: 1, clickable: false,opacity:0,fillOpacity:0}).addTo(this._miniMap);
 			this._mainMap.on('moveend', this._onMainMapMoved, this);
 			this._mainMap.on('move', this._onMainMapMoving, this);
+			this._miniMap.on('movestart', this._onMiniMapMoveStarted, this);
+			this._miniMap.on('move', this._onMiniMapMoving, this);
 			this._miniMap.on('moveend', this._onMiniMapMoved, this);
 		}, this));
 
@@ -164,10 +167,25 @@ L.Control.MiniMap = L.Control.extend({
 		this._aimingRect.setBounds(this._mainMap.getBounds());
 	},
 
+	_onMiniMapMoveStarted:function (e) {
+		var lastAimingRect = this._aimingRect.getBounds();
+		var sw = this._miniMap.latLngToContainerPoint(lastAimingRect.getSouthWest());
+		var ne = this._miniMap.latLngToContainerPoint(lastAimingRect.getNorthEast());
+		this._lastAimingRectPosition = {sw:sw,ne:ne};
+	},
+
+	_onMiniMapMoving: function (e) {
+		if (!this._mainMapMoving) {
+			this._shadowRect.setBounds(new L.LatLngBounds(this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.sw),this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.ne)));
+			this._shadowRect.setStyle({opacity:1,fillOpacity:0.3});
+		}
+	},
+
 	_onMiniMapMoved: function (e) {
 		if (!this._mainMapMoving) {
 			this._miniMapMoving = true;
 			this._mainMap.setView(this._miniMap.getCenter(), this._decideZoom(false));
+			this._shadowRect.setStyle({opacity:0,fillOpacity:0});
 		} else {
 			this._mainMapMoving = false;
 		}
