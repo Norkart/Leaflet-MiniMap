@@ -9,12 +9,17 @@ L.Control.MiniMap = L.Control.extend({
 		width: 150,
 		height: 150
 	},
+	
+	hideText: 'Hide MiniMap',
+	
+	showText: 'Show MiniMap',
+	
 	//layer is the map layer to be shown in the minimap
 	initialize: function (layer, options) {
 		L.Util.setOptions(this, options);
 		this._layer = layer;
 	},
-
+	
 	onAdd: function (map) {
 
 		this._mainMap = map;
@@ -82,7 +87,7 @@ L.Control.MiniMap = L.Control.extend({
 
 	_addToggleButton: function () {
 		this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(
-				'', 'Hide Minimap', 'leaflet-control-minimap-toggle-display', this._container, this._toggleDisplayButtonClicked, this) : undefined;
+				'', this.hideText, 'leaflet-control-minimap-toggle-display', this._container, this._toggleDisplayButtonClicked, this) : undefined;
 	},
 
 	_createButton: function (html, title, className, container, fn, context) {
@@ -107,11 +112,11 @@ L.Control.MiniMap = L.Control.extend({
 		this._userToggledDisplay = true;
 		if (!this._minimized) {
 			this._minimize();
-			this._toggleDisplayButton.title = "Show Minimap";
+			this._toggleDisplayButton.title = this.showText;
 		}
 		else {
 			this._restore();
-			this._toggleDisplayButton.title = "Hide Minimap";
+			this._toggleDisplayButton.title = this.hideText;
 		}
 	},
 
