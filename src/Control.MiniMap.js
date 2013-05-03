@@ -43,8 +43,8 @@ L.Control.MiniMap = L.Control.extend({
 			doubleClickZoom: !this.options.zoomLevelFixed,
 			boxZoom: !this.options.zoomLevelFixed
 		});
-		//We make a copy so that the original layer object is untouched, this way we can add/remove multiple times
-		this._miniMap.addLayer(L.Util.clone (this._layer));
+
+		this._miniMap.addLayer(this._layer);
 
 		//These bools are used to prevent infinite loops of the two maps notifying each other that they've moved.
 		this._mainMapMoving = false;
@@ -83,6 +83,7 @@ L.Control.MiniMap = L.Control.extend({
 		this._mainMap.off('move', this._onMainMapMoving, this);
 		this._miniMap.off('moveend', this._onMiniMapMoved, this);
 
+		this._miniMap.removeLayer(this._layer);
 	},
 
 	_addToggleButton: function () {
@@ -238,17 +239,4 @@ L.Map.addInitHook(function () {
 
 L.control.minimap = function (options) {
 	return new L.Control.MiniMap(options);
-};
-
-//Simple helper function for cloning
-L.Util.clone = function (o){
-	if(o == null || typeof(o) != 'object')
-		return o;
-
-	var c = new o.constructor();
-	//Deep clone recursively
-	for(var k in o)
-		c[k] = L.Util.clone(o[k]);
-
-	return c;
 };
