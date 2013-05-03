@@ -83,6 +83,7 @@ L.Control.MiniMap = L.Control.extend({
 		this._mainMap.off('move', this._onMainMapMoving, this);
 		this._miniMap.off('moveend', this._onMiniMapMoved, this);
 
+		this._miniMap.removeLayer(this._layer);
 	},
 
 	_addToggleButton: function () {
