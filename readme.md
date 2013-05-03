@@ -30,6 +30,13 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 `zoomAnimation:` Sets whether the minimap should have an animated zoom. (Will cause it to lag a bit after the movement of the main map.) Defaults to false.
 
+
+
+
 `toggleDisplay:` Sets whether the minimap should have a button to minimise it. Defaults to false. 
 
 `autoToggleDisplay:` Sets whether the minimap should hide automatically if the parent map bounds does not fit within the minimap bounds. Especially useful when 'zoomLevelFixed' is set.
+
+`hideText:` Text-String to be displayed as Tooltip when hovering over the toggle button on the MiniMap is visible. To do general translation overrides take a look at the german example sourcefile.
+
+`showText:` Text-String to be displayed as Tooltip when hovering over the toggle button on the MiniMap is hidden. To do general translation overrides take a look at the german example sourcefile.
