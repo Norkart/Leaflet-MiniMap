@@ -175,7 +175,7 @@ L.Control.MiniMap = L.Control.extend({
 	},
 
 	_onMiniMapMoving: function (e) {
-		if (!this._mainMapMoving) {
+		if (!this._mainMapMoving && this._lastAimingRectPosition) {
 			this._shadowRect.setBounds(new L.LatLngBounds(this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.sw),this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.ne)));
 			this._shadowRect.setStyle({opacity:1,fillOpacity:0.3});
 		}
