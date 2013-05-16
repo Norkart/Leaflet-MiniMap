@@ -41,7 +41,8 @@ L.Control.MiniMap = L.Control.extend({
 			touchZoom: !this.options.zoomLevelFixed,
 			scrollWheelZoom: !this.options.zoomLevelFixed,
 			doubleClickZoom: !this.options.zoomLevelFixed,
-			boxZoom: !this.options.zoomLevelFixed
+			boxZoom: !this.options.zoomLevelFixed,
+			crs: map.options.crs
 		});
 
 		this._miniMap.addLayer(this._layer);
