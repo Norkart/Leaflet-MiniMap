@@ -34,6 +34,8 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 `autoToggleDisplay:` Sets whether the minimap should hide automatically if the parent map bounds does not fit within the minimap bounds. Especially useful when 'zoomLevelFixed' is set.
 
+`listenBaseLayerChange:` Sets whether the minimap baselayer should change or not when main map baselayer is changed. Default to false.
+
 ###Translation strings
 
 These are not passed as options, but are overridden in a subclass. To do general translation overrides take a look at the german example sourcefile.

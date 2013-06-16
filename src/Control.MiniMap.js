@@ -6,6 +6,7 @@ L.Control.MiniMap = L.Control.extend({
 		zoomLevelFixed: false,
 		zoomAnimation: false,
 		autoToggleDisplay: false,
+		listenBaseLayerChange: false,
 		width: 150,
 		height: 150
 	},
@@ -17,7 +18,7 @@ L.Control.MiniMap = L.Control.extend({
 	//layer is the map layer to be shown in the minimap
 	initialize: function (layer, options) {
 		L.Util.setOptions(this, options);
-		this._layer = layer;
+		this._layer = this._cloneLayer(layer);
 	},
 	
 	onAdd: function (map) {
@@ -76,7 +77,19 @@ L.Control.MiniMap = L.Control.extend({
 		L.Control.prototype.addTo.call(this, map);
 		this._miniMap.setView(this._mainMap.getCenter(), this._decideZoom(true));
 		this._setDisplay(this._decideMinimized());
+		if (this.options.listenBaseLayerChange) {
+			this._mainMap.on('baselayerchange', this.onMainMapBaseLayerChange, this);
+		}
 		return this;
+	},
+
+	onMainMapBaseLayerChange: function (e) {
+		var layer = this._cloneLayer(e.layer);
+		if (this._miniMap.hasLayer(this._layer)) {
+			this._miniMap.removeLayer(this._layer);
+		}
+		this._layer = layer;
+		this._miniMap.addLayer(this._layer);
 	},
 
 	onRemove: function (map) {
@@ -225,6 +238,10 @@ L.Control.MiniMap = L.Control.extend({
 		}
 
 		return this._minimized;
+	},
+
+	_cloneLayer: function (layer) {
+		return new L.TileLayer(layer._url, layer.options);
 	}
 });
 
