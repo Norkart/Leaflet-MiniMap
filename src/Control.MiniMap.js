@@ -36,6 +36,7 @@ L.Control.MiniMap = L.Control.extend({
 		{
 			attributionControl: false,
 			zoomControl: false,
+			zoomsliderControl: false,
 			zoomAnimation: this.options.zoomAnimation,
 			autoToggleDisplay: this.options.autoToggleDisplay,
 			touchZoom: !this.options.zoomLevelFixed,
