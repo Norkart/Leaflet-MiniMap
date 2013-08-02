@@ -58,7 +58,6 @@ L.Control.MiniMap = L.Control.extend({
 		if (this.options.toggleDisplay) {
 			this._addToggleButton();
 		}
-		
 
 		this._miniMap.whenReady(L.Util.bind(function () {
 			this._aimingRect = L.rectangle(this._mainMap.getBounds(), {color: "#ff7800", weight: 1, clickable: false}).addTo(this._miniMap);
