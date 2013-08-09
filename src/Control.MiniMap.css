@@ -1,5 +1,5 @@
 .leaflet-control-minimap {
-    border:solid rgba(255, 255, 255, 0.7) 3px;
+    border:solid rgba(255, 255, 255, 1.0) 3px;
     box-shadow: 0 1px 7px #999;
     background: #f8f8f9;
     -moz-border-radius: 8px;
@@ -8,7 +8,7 @@
 }
 
 .leaflet-control-minimap a {
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 1.0);
     background-position: 1px 2px;
     background-repeat: no-repeat;
     display: block;
@@ -22,7 +22,7 @@
 
 .leaflet-control-minimap-toggle-display {
     background-image: url("images/toggle.png");
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 2px 0px 0px 0px;
     height: 19px;
     width: 19px;
     position: absolute;
