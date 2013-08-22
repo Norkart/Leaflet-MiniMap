@@ -14,15 +14,17 @@
     display: block;
     outline: none;
     z-index: 99999;
+    transition-duration: 0.4s;
+    transition-property: transform;
 }
 
 .leaflet-control-minimap a.minimized {
-    background-position: 1px -18px;
+    transform: rotate(180deg);
 }
 
 .leaflet-control-minimap-toggle-display {
     background-image: url("images/toggle.png");
-    border-radius: 2px 0px 0px 0px;
+    border-radius: 2px 0px 2px 0px;
     height: 19px;
     width: 19px;
     position: absolute;
