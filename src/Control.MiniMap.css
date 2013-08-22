@@ -5,6 +5,7 @@
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
+    transition: all .2s;
 }
 
 .leaflet-control-minimap a {
@@ -14,7 +15,7 @@
     display: block;
     outline: none;
     z-index: 99999;
-    transition: all .25s ease-in-out;
+    transition: all .2s;
 }
 
 .leaflet-control-minimap a.minimized {
