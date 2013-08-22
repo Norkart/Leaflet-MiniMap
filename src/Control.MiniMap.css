@@ -14,12 +14,12 @@
     display: block;
     outline: none;
     z-index: 99999;
-    transition-duration: 0.4s;
-    transition-property: transform;
+    transition: all .25s ease-in-out;
 }
 
 .leaflet-control-minimap a.minimized {
     transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
 }
 
 .leaflet-control-minimap-toggle-display {
