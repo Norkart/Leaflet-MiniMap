@@ -19,8 +19,8 @@
 }
 
 .leaflet-control-minimap a.minimized {
-    transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .leaflet-control-minimap-toggle-display {
