@@ -67,6 +67,7 @@ L.Control.MiniMap = L.Control.extend({
 			this._miniMap.on('movestart', this._onMiniMapMoveStarted, this);
 			this._miniMap.on('move', this._onMiniMapMoving, this);
 			this._miniMap.on('moveend', this._onMiniMapMoved, this);
+			this._mainMap.on('resize', this._onMainMapResized, this);
 		}, this));
 
 		return this._container;
@@ -247,7 +248,11 @@ L.Control.MiniMap = L.Control.extend({
 		}
 
 		return this._minimized;
-	}
+	},
+
+	_onMainMapResized: function (e) {
+		this._miniMap.invalidateSize();
+	},
 });
 
 L.Map.mergeOptions({
