@@ -252,7 +252,7 @@ L.Control.MiniMap = L.Control.extend({
 
 	_onMainMapResized: function (e) {
 		this._miniMap.invalidateSize();
-	},
+	}
 });
 
 L.Map.mergeOptions({
