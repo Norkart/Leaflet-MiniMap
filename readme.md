@@ -34,6 +34,10 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 `autoToggleDisplay:` Sets whether the minimap should hide automatically if the parent map bounds does not fit within the minimap bounds. Especially useful when 'zoomLevelFixed' is set.
 
+`aimingRectOptions:` Sets the style of the aiming rectangle by passing in a [Path.Options object](http://leafletjs.com/reference.html#path-options). (Clickable will always be overridden and set to false.)
+
+`shadowRectOptions:` Sets the style of the aiming shadow rectangle by passing in a [Path.Options object](http://leafletjs.com/reference.html#path-options). (Clickable will always be overridden and set to false.)
+
 ###Translation strings
 
 These are not passed as options, but are overridden in a subclass. To do general translation overrides take a look at the german example sourcefile.

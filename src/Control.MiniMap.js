@@ -7,7 +7,9 @@ L.Control.MiniMap = L.Control.extend({
 		zoomAnimation: false,
 		autoToggleDisplay: false,
 		width: 150,
-		height: 150
+		height: 150,
+		aimingRectOptions: {color: "#ff7800", weight: 1, clickable: false},
+		shadowRectOptions: {color: "#000000", weight: 1, clickable: false, opacity:0, fillOpacity:0}
 	},
 	
 	hideText: 'Hide MiniMap',
@@ -17,6 +19,9 @@ L.Control.MiniMap = L.Control.extend({
 	//layer is the map layer to be shown in the minimap
 	initialize: function (layer, options) {
 		L.Util.setOptions(this, options);
+		//Make sure the aiming rects are non-clickable even if the user tries to set them clickable (most likely by forgetting to specify them false)
+		this.options.aimingRectOptions.clickable = false;
+		this.options.shadowRectOptions.clickable = false;
 		this._layer = layer;
 	},
 	
@@ -60,8 +65,8 @@ L.Control.MiniMap = L.Control.extend({
 		}
 
 		this._miniMap.whenReady(L.Util.bind(function () {
-			this._aimingRect = L.rectangle(this._mainMap.getBounds(), {color: "#ff7800", weight: 1, clickable: false}).addTo(this._miniMap);
-			this._shadowRect = L.rectangle(this._mainMap.getBounds(), {color: "#000000", weight: 1, clickable: false,opacity:0,fillOpacity:0}).addTo(this._miniMap);
+			this._aimingRect = L.rectangle(this._mainMap.getBounds(), this.options.aimingRectOptions).addTo(this._miniMap);
+			this._shadowRect = L.rectangle(this._mainMap.getBounds(), this.options.shadowRectOptions).addTo(this._miniMap);
 			this._mainMap.on('moveend', this._onMainMapMoved, this);
 			this._mainMap.on('move', this._onMainMapMoving, this);
 			this._miniMap.on('movestart', this._onMiniMapMoveStarted, this);
