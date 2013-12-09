@@ -10,8 +10,6 @@
     background-color: rgba(255, 255, 255, 1.0);
     background-position: 1px 2px;
     background-repeat: no-repeat;
-    display: block;
-    outline: none;
     z-index: 99999;
     transition: all .2s;
 }
