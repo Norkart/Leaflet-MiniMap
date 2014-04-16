@@ -271,7 +271,7 @@ L.control.minimap.pixelsView = L.CanvasLayer.extend({
 		var points = this._points;
 		for (var i = 0, l = points.length; i < l; ++i) {
 			var p = points[i];
-			var pos = this._miniMap.latLngToLayerPoint(p);
+			var pos = this._miniMap.latLngToContainerPoint(p);
 			var color = p._pixelColor;
 
 			var x = pos.x,
