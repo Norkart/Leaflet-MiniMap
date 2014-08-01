@@ -6,6 +6,7 @@ L.Control.MiniMap = L.Control.extend({
 		zoomLevelFixed: false,
 		zoomAnimation: false,
 		autoToggleDisplay: false,
+		keyboard: true,
 		width: 150,
 		height: 150,
 		aimingRectOptions: {color: "#ff7800", weight: 1, clickable: false},
@@ -47,6 +48,7 @@ L.Control.MiniMap = L.Control.extend({
 			scrollWheelZoom: !this.options.zoomLevelFixed,
 			doubleClickZoom: !this.options.zoomLevelFixed,
 			boxZoom: !this.options.zoomLevelFixed,
+			keyboard: this.options.keyboard,
 			crs: map.options.crs
 		});
 
