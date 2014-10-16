@@ -3,6 +3,7 @@ L.Control.MiniMap = L.Control.extend({
 		position: 'bottomright',
 		toggleDisplay: false,
 		zoomLevelOffset: -5,
+                maxZoom: false,
 		zoomLevelFixed: false,
 		zoomAnimation: false,
 		autoToggleDisplay: false,
@@ -37,8 +38,7 @@ L.Control.MiniMap = L.Control.extend({
 		L.DomEvent.on(this._container, 'mousewheel', L.DomEvent.stopPropagation);
 
 
-		this._miniMap = new L.Map(this._container,
-		{
+		var miniMapOptions = {
 			attributionControl: false,
 			zoomControl: false,
 			zoomAnimation: this.options.zoomAnimation,
@@ -48,7 +48,11 @@ L.Control.MiniMap = L.Control.extend({
 			doubleClickZoom: !this.options.zoomLevelFixed,
 			boxZoom: !this.options.zoomLevelFixed,
 			crs: map.options.crs
-		});
+		};
+		if (this.options.maxZoom !== false){
+			miniMapOptions.maxZoom = this.options.maxZoom;
+		}
+		this._miniMap = new L.Map(this._container, miniMapOptions);
 
 		this._miniMap.addLayer(this._layer);
 
@@ -205,9 +209,14 @@ L.Control.MiniMap = L.Control.extend({
 
 	_decideZoom: function (fromMaintoMini) {
 		if (!this.options.zoomLevelFixed) {
-			if (fromMaintoMini)
-				return this._mainMap.getZoom() + this.options.zoomLevelOffset;
-			else {
+			if (fromMaintoMini) {
+				var zoom = this._mainMap.getZoom() + this.options.zoomLevelOffset;
+        			if (this.options.maxZoom !== false && zoom > this.options.maxZoom){
+          				return this.options.maxZoom;
+        			} else {
+          				return zoom;
+        			}
+			} else {
 				var currentDiff = this._miniMap.getZoom() - this._mainMap.getZoom();
 				var proposedZoom = this._miniMap.getZoom() - this.options.zoomLevelOffset;
 				var toRet;
