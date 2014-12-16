@@ -91,6 +91,12 @@ L.Control.MiniMap = L.Control.extend({
 
 		this._miniMap.removeLayer(this._layer);
 	},
+	
+	changeLayer: function (layer) {
+           this._miniMap.removeLayer(this._layer);
+           this._layer = layer;
+           this._miniMap.addLayer(this._layer);
+    },
 
 	_addToggleButton: function () {
 		this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(

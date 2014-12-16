@@ -15,6 +15,10 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 **Note:** Leaflet version 0.5 or higher is required.
 
+## Available Methods
+
+`changeLayer:` Swaps out the minimap layer for the one provided. see _example___layerchange.html_ for hints on good uses.
+
 ## Available Options
  The mini map uses options which can be set in the same way as other leaflet options, and these are the available options:
 
