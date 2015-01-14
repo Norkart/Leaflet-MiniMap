@@ -8,6 +8,8 @@ L.Control.MiniMap = L.Control.extend({
 		autoToggleDisplay: false,
 		width: 150,
 		height: 150,
+		collapsedWidth: 19,
+		collapsedHeight: 19,
 		aimingRectOptions: {color: "#ff7800", weight: 1, clickable: false},
 		shadowRectOptions: {color: "#000000", weight: 1, clickable: false, opacity:0, fillOpacity:0}
 	},
@@ -147,8 +149,8 @@ L.Control.MiniMap = L.Control.extend({
 	_minimize: function () {
 		// hide the minimap
 		if (this.options.toggleDisplay) {
-			this._container.style.width = '19px';
-			this._container.style.height = '19px';
+			this._container.style.width = this.options.collapsedWidth + 'px';
+			this._container.style.height = this.options.collapsedHeight + 'px';
 			this._toggleDisplayButton.className += ' minimized';
 		}
 		else {
