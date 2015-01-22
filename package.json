@@ -25,12 +25,13 @@
   "devDependencies": {
     "uglify-js": "2.4.16",
     "clean-css": "3.0.7",
-	"ncp": "1.0.1"
+	"ncp": "1.0.1",
+	"svg2png": "1.1.0"
   },
   "scripts": {
     "build:js": "uglifyjs  --output dist/Control.MiniMap.min.js src/Control.MiniMap.js",
 	"build:css": "cleancss   --output dist/Control.MiniMap.min.css src/Control.MiniMap.css",
-	"build:img": "ncp src/images dist/images",
+	"build:img": "node buildscripts/svgtopng.js",
 	"build": "npm run build:css && npm run build:js && npm run build:img"
   }
 }
