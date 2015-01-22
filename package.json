@@ -24,11 +24,13 @@
   },
   "devDependencies": {
     "uglify-js": "2.4.16",
-    "clean-css": "3.0.7"
+    "clean-css": "3.0.7",
+	"ncp": "1.0.1"
   },
   "scripts": {
     "build:js": "uglifyjs  --output dist/Control.MiniMap.min.js src/Control.MiniMap.js",
 	"build:css": "cleancss   --output dist/Control.MiniMap.min.css src/Control.MiniMap.css",
-	"build": "npm run build:css && npm run build:js"
+	"build:img": "ncp src/images dist/images",
+	"build": "npm run build:css && npm run build:js && npm run build:img"
   }
 }
