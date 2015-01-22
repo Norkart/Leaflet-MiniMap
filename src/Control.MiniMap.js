@@ -271,6 +271,6 @@ L.Map.addInitHook(function () {
 	}
 });
 
-L.control.minimap = function (options) {
-	return new L.Control.MiniMap(options);
+L.control.minimap = function (layer, options) {
+	return new L.Control.MiniMap(layer, options);
 };
