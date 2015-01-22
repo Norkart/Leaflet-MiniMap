@@ -98,9 +98,10 @@ L.Control.MiniMap = L.Control.extend({
            this._miniMap.addLayer(this._layer);
     },
 
-	_addToggleButton: function () {
+	_addToggleButton: function () {	
 		this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(
-				'', this.hideText, 'leaflet-control-minimap-toggle-display', this._container, this._toggleDisplayButtonClicked, this) : undefined;
+				'', this.hideText, ('leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-' 
+				+ this.options.position), this._container, this._toggleDisplayButtonClicked, this) : undefined;
 	},
 
 	_createButton: function (html, title, className, container, fn, context) {
@@ -149,7 +150,7 @@ L.Control.MiniMap = L.Control.extend({
 		if (this.options.toggleDisplay) {
 			this._container.style.width = '19px';
 			this._container.style.height = '19px';
-			this._toggleDisplayButton.className += ' minimized';
+			this._toggleDisplayButton.className += (' minimized-' + this.options.position);
 		}
 		else {
 			this._container.style.display = 'none';
@@ -162,7 +163,7 @@ L.Control.MiniMap = L.Control.extend({
 			this._container.style.width = this.options.width + 'px';
 			this._container.style.height = this.options.height + 'px';
 			this._toggleDisplayButton.className = this._toggleDisplayButton.className
-					.replace(/(?:^|\s)minimized(?!\S)/g, '');
+					.replace('minimized-'  + this.options.position, '');
 		}
 		else {
 			this._container.style.display = 'block';
