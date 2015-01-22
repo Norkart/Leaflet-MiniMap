@@ -49,3 +49,7 @@ These are not passed as options, but are overridden in a subclass. To do general
 `hideText:` Text-String to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is visible. 
 
 `showText:` Text-String to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is hidden.
+
+##Building minified versions
+First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build 
+the minified js and css.
