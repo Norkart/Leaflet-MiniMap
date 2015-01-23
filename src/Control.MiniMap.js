@@ -104,6 +104,9 @@ L.Control.MiniMap = L.Control.extend({
 		this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(
 				'', this.hideText, ('leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-' 
 				+ this.options.position), this._container, this._toggleDisplayButtonClicked, this) : undefined;
+		
+		this._toggleDisplayButton.style.width = this.options.collapsedWidth + 'px';
+		this._toggleDisplayButton.style.height = this.options.collapsedHeight + 'px';
 	},
 
 	_createButton: function (html, title, className, container, fn, context) {
