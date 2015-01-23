@@ -28,6 +28,10 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 `height:` The height of the minimap in pixels. Defaults to 150.
 
+`collapsedWidth:` The width of the toggle marker and the minimap when collapsed, in pixels. Defaults to 19.
+
+`collapsedHeight:` The height of the toggle marker and the minimap when collapsed, in pixels. Defaults to 19.
+
 `zoomLevelOffset:` The offset applied to the zoom in the minimap compared to the zoom of the main map. Can be positive or negative, defaults to -5.
 
 `zoomLevelFixed:` Overrides the offset to apply a fixed zoom level to the minimap regardless of the main map zoom. Set it to any valid zoom level, if unset `zoomLevelOffset` is used instead.
