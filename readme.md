@@ -13,7 +13,7 @@ From the [example](http://norkart.github.com/Leaflet-MiniMap/example.html):
 
 As the minimap control inherits from leaflet's control, positioning is handled automatically by leaflet. However, you can still style the minimap and set its size by modifying the css file.
 
-**Note:** Leaflet version 0.5 or higher is required. The toggle button will not work on IE8 or older.
+**Note:** Leaflet version 0.7.3 or higher is required.
 
 ## Available Methods
 
