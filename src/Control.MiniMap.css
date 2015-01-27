@@ -44,6 +44,10 @@
     border-radius: 3px 0px 0px 0px;
 }
 
+.leaflet-oldie.leaflet-control-minimap-toggle-display{
+    background-image: url("images/toggle.png");
+}
+
 .leaflet-control-minimap-toggle-display-bottomright {
     bottom: 0;
     right: 0; 
