@@ -55,7 +55,7 @@ L.Control.MiniMap = L.Control.extend({
 		this._miniMap.addLayer(this._layer);
 
 		//These bools are used to prevent infinite loops of the two maps notifying each other that they've moved.
-		this._mainMapMoving = false;
+		this._mainMapMoving = true;
 		this._miniMapMoving = false;
 
 		//Keep a record of this to prevent auto toggling when the user explicitly doesn't want it.
