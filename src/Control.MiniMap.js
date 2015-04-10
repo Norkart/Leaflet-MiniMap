@@ -1,3 +1,5 @@
+var L = require('leaflet');
+
 L.Control.MiniMap = L.Control.extend({
 	options: {
 		position: 'bottomright',
@@ -280,3 +282,5 @@ L.Map.addInitHook(function () {
 L.control.minimap = function (layer, options) {
 	return new L.Control.MiniMap(layer, options);
 };
+
+module.exports = L.control.minimap;
