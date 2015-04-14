@@ -20,7 +20,7 @@ As the minimap control inherits from leaflet's control, positioning is handled a
     var minimap = require('leaflet-minimap');
     minimap(layer, options).addTo(map);
     
-If you prefer ES6 style:
+If you prefer ES6 style (for example with babel):
 
     import minimap from 'leaflet-minimap';
     minimap(layer, options).addTo(map);
