@@ -1,5 +1,4 @@
-var require = require || function() { return L; };
-var L = require('leaflet');
+var L = typeof require === 'function' ? require('leaflet') : L;
 
 L.Control.MiniMap = L.Control.extend({
 	options: {
