@@ -1,3 +1,4 @@
+var require = require || function() { return L; };
 var L = require('leaflet');
 
 L.Control.MiniMap = L.Control.extend({
@@ -283,4 +284,6 @@ L.control.minimap = function (layer, options) {
 	return new L.Control.MiniMap(layer, options);
 };
 
-module.exports = L.control.minimap;
+if (typeof module === 'object' && typeof module.exports === 'object') {
+	module.exports = L.control.minimap;
+}
