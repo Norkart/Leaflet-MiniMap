@@ -294,7 +294,7 @@
 	
 	L.Map.addInitHook(function () {
 		if (this.options.miniMapControl) {
-			this.miniMapControl = (new L.Control.MiniMap()).addTo(this);
+			this.miniMapControl = (new MiniMap()).addTo(this);
 		}
 	});
 	
