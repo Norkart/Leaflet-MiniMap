@@ -300,4 +300,4 @@
 	
 	return MiniMap;
 	
-}, window));
+}, window)); 
