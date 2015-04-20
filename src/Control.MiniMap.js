@@ -1,3 +1,5 @@
+var L = typeof require === 'function' ? require('leaflet') : L;
+
 L.Control.MiniMap = L.Control.extend({
 	options: {
 		position: 'bottomright',
@@ -280,3 +282,7 @@ L.Map.addInitHook(function () {
 L.control.minimap = function (layer, options) {
 	return new L.Control.MiniMap(layer, options);
 };
+
+if (typeof module === 'object' && typeof module.exports === 'object') {
+	module.exports = L.control.minimap;
+}

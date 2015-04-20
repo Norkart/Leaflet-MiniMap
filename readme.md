@@ -15,6 +15,16 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 **Note:** Leaflet version 0.7.3 or higher is required.
 
+###Example usage in CommonJS compatible environments (Node/Browserify)
+
+    var minimap = require('leaflet-minimap');
+    minimap(layer, options).addTo(map);
+    
+If you prefer ES6 style (for example with babel):
+
+    import minimap from 'leaflet-minimap';
+    minimap(layer, options).addTo(map);
+
 ## Available Methods
 
 `changeLayer:` Swaps out the minimap layer for the one provided. See the _layerchange_ example for hints on good uses.
@@ -53,6 +63,7 @@ These are not passed as options, but are overridden in a subclass. To do general
 `hideText:` Text-String to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is visible. 
 
 `showText:` Text-String to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is hidden.
+
 
 ##Building minified versions
 First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build 
