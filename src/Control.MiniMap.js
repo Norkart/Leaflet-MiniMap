@@ -285,4 +285,6 @@ L.control.minimap = function (layer, options) {
 
 if (typeof module === 'object' && typeof module.exports === 'object') {
 	module.exports = L.control.minimap;
+} else if (typeof define === 'function' && define.amd) {
+	define(L.control.minimap);
 }
