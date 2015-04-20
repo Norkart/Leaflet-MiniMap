@@ -19,7 +19,7 @@
     }
 }(function (L) {
 
-	MiniMap = L.Control.extend({
+	var MiniMap = L.Control.extend({
 		options: {
 			position: 'bottomright',
 			toggleDisplay: false,
