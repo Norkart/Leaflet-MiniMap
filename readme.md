@@ -25,6 +25,12 @@ If you prefer ES6 style (for example with babel):
     import minimap from 'leaflet-minimap';
     minimap(layer, options).addTo(map);
 
+###Example usage in AMD compatible environments (RequireJS)
+
+    require(['leaflet-minimap'], function(minimap) {
+        minimap(layer, options).addTo(map);
+    });
+    
 ## Available Methods
 
 `changeLayer:` Swaps out the minimap layer for the one provided. See the _layerchange_ example for hints on good uses.
