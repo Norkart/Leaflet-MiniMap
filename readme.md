@@ -17,14 +17,20 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 ###Example usage in CommonJS compatible environments (Node/Browserify)
 
-    var minimap = require('leaflet-minimap');
-    minimap(layer, options).addTo(map);
+    var MiniMap = require('leaflet-minimap');
+    new MiniMap(layer, options).addTo(map);
     
 If you prefer ES6 style (for example with babel):
 
-    import minimap from 'leaflet-minimap';
-    minimap(layer, options).addTo(map);
+    import MiniMap from 'leaflet-minimap';
+    new MiniMap(layer, options).addTo(map);
 
+###Example usage in AMD compatible environments (RequireJS)
+
+    require(['leaflet-minimap'], function(MiniMap) {
+        new Minimap(layer, options).addTo(map);
+    });
+    
 ## Available Methods
 
 `changeLayer:` Swaps out the minimap layer for the one provided. See the _layerchange_ example for hints on good uses.
