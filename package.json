@@ -31,9 +31,10 @@
     "svg2png": "1.1.0"
   },
   "scripts": {
-    "build:js": "uglifyjs  --output dist/Control.MiniMap.min.js src/Control.MiniMap.js",
-    "build:css": "cleancss   --output dist/Control.MiniMap.min.css src/Control.MiniMap.css",
+    "build:js": "uglifyjs  --output dist/js/Control.MiniMap.min.js src/js/Control.MiniMap.js",
+    "build:css": "cleancss  --skip-rebase -o dist/css/Control.MiniMap.min.css src/css/Control.MiniMap.css ",
     "build:img": "svgo src/images/toggle.svg dist/images/toggle.svg && node buildscripts/svgtopng.js",
-    "build": "npm run build:css && npm run build:js && npm run build:img"
+    "build:examples": "node buildscripts/examples.js",
+    "build": "npm run build:css && npm run build:js && npm run build:img && npm run build:examples"
   }
 }
