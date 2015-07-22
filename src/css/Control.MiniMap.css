@@ -16,36 +16,36 @@
 .leaflet-control-minimap a.minimized-bottomright {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .leaflet-control-minimap a.minimized-topleft {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .leaflet-control-minimap a.minimized-bottomleft {
     -webkit-transform: rotate(270deg);
     transform: rotate(270deg);
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .leaflet-control-minimap a.minimized-topright {
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .leaflet-control-minimap-toggle-display{
-    background-image: url("images/toggle.svg");
+    background-image: url("../images/toggle.svg");
 	background-size: cover;
     position: absolute;
-    border-radius: 3px 0px 0px 0px;
+    border-radius: 3px 0 0 0;
 }
 
 .leaflet-oldie .leaflet-control-minimap-toggle-display{
-    background-image: url("images/toggle.png");
+    background-image: url("../images/toggle.png");
 }
 
 .leaflet-control-minimap-toggle-display-bottomright {
