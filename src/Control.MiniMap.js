@@ -66,10 +66,10 @@
 				zoomControl: false,
 				zoomAnimation: this.options.zoomAnimation,
 				autoToggleDisplay: this.options.autoToggleDisplay,
-				touchZoom: !this.options.zoomLevelFixed,
-				scrollWheelZoom: !this.options.zoomLevelFixed,
-				doubleClickZoom: !this.options.zoomLevelFixed,
-				boxZoom: !this.options.zoomLevelFixed,
+				touchZoom: !this._isZoomLevelFixed(),
+				scrollWheelZoom: !this._isZoomLevelFixed(),
+				doubleClickZoom: !this._isZoomLevelFixed(),
+				boxZoom: !this._isZoomLevelFixed(),
 				crs: map.options.crs
 			});
 	
@@ -235,9 +235,14 @@
 				this._mainMapMoving = false;
 			}
 		},
+
+    _isZoomLevelFixed:function() {
+      var zoomLevelFixed = this.options.zoomLevelFixed;
+      return this._isDefined(zoomLevelFixed) && this._isInteger(zoomLevelFixed);
+    },
 	
 		_decideZoom: function (fromMaintoMini) {
-			if (!this.options.zoomLevelFixed) {
+			if (!this._isZoomLevelFixed()){ 
 				if (fromMaintoMini)
 					return this._mainMap.getZoom() + this.options.zoomLevelOffset;
 				else {
@@ -285,7 +290,15 @@
 			}
 	
 			return this._minimized;
-		}
+    },
+
+    _isInteger:function(value) {
+      return typeof value === 'number';
+    },
+
+    _isDefined:function(value) {
+      return typeof value !== 'undefined';
+    },
 	});
 	
 	L.Map.mergeOptions({
