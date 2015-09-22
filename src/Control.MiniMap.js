@@ -33,8 +33,7 @@
 			collapsedHeight: 19,
 			aimingRectOptions: {color: "#ff7800", weight: 1, clickable: false},
 			shadowRectOptions: {color: "#000000", weight: 1, clickable: false, opacity:0, fillOpacity:0},
-			hideText: 'Hide MiniMap',
-			showText: 'Show MiniMap'
+			strings: {hideText: 'Hide MiniMap', showText: 'Show MiniMap'}
 		},
 		
 		//layer is the map layer to be shown in the minimap
@@ -121,7 +120,7 @@
 	
 		_addToggleButton: function () {	
 			this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(
-					'', this.options.hideText, ('leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-' 
+					'', this.options.strings.hideText, ('leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-' 
 					+ this.options.position), this._container, this._toggleDisplayButtonClicked, this) : undefined;
 			
 			this._toggleDisplayButton.style.width = this.options.collapsedWidth + 'px';
@@ -150,11 +149,11 @@
 			this._userToggledDisplay = true;
 			if (!this._minimized) {
 				this._minimize();
-				this._toggleDisplayButton.title = this.options.showText;
+				this._toggleDisplayButton.title = this.options.strings.showText;
 			}
 			else {
 				this._restore();
-				this._toggleDisplayButton.title = this.options.hideText;
+				this._toggleDisplayButton.title = this.options.strings.hideText;
 			}
 		},
 	
