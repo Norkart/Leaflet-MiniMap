@@ -62,9 +62,13 @@ If you prefer ES6 style (for example with babel):
 
 `shadowRectOptions:` Sets the style of the aiming shadow rectangle by passing in a [Path.Options object](http://leafletjs.com/reference.html#path-options). (Clickable will always be overridden and set to false.)
 
-`hideText:` Sets the text to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is visible. Defaults to 'Hide MiniMap'
+`strings:` Overrides the default strings allowing for translation. See below for available strings and `example/example_i18n.html` for an example.
 
-`showText:` Sets the text to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is hidden. Defaults to 'Show MiniMap'
+### Available Strings
+
+`hideText:` The text to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is visible. Defaults to 'Hide MiniMap'
+
+`showText:` The text to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is hidden. Defaults to 'Show MiniMap'
 
 ##Building minified versions
 First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build 
