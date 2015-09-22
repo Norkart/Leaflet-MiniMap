@@ -32,7 +32,7 @@
   },
   "scripts": {
     "build:js": "uglifyjs  --output dist/Control.MiniMap.min.js src/Control.MiniMap.js",
-    "build:css": "cleancss   --output dist/Control.MiniMap.min.css src/Control.MiniMap.css",
+    "build:css": "cleancss  --skip-rebase --output dist/Control.MiniMap.min.css src/Control.MiniMap.css",
     "build:img": "svgo src/images/toggle.svg dist/images/toggle.svg && node buildscripts/svgtopng.js",
     "build": "npm run build:css && npm run build:js && npm run build:img"
   }
