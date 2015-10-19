@@ -15,6 +15,22 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 **Note:** Leaflet version 0.7.3 or higher is required.
 
+###Example usage in CommonJS compatible environments (Node/Browserify)
+
+    var MiniMap = require('leaflet-minimap');
+    new MiniMap(layer, options).addTo(map);
+    
+If you prefer ES6 style (for example with babel):
+
+    import MiniMap from 'leaflet-minimap';
+    new MiniMap(layer, options).addTo(map);
+
+###Example usage in AMD compatible environments (RequireJS)
+
+    require(['leaflet-minimap'], function(MiniMap) {
+        new Minimap(layer, options).addTo(map);
+    });
+    
 ## Available Methods
 
 `changeLayer:` Swaps out the minimap layer for the one provided. See the _layerchange_ example for hints on good uses.
@@ -46,13 +62,13 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
 `shadowRectOptions:` Sets the style of the aiming shadow rectangle by passing in a [Path.Options object](http://leafletjs.com/reference.html#path-options). (Clickable will always be overridden and set to false.)
 
-###Translation strings
+`strings:` Overrides the default strings allowing for translation. See below for available strings and `example/example_i18n.html` for an example.
 
-These are not passed as options, but are overridden in a subclass. To do general translation overrides take a look at the german example sourcefile.
+### Available Strings
 
-`hideText:` Text-String to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is visible. 
+`hideText:` The text to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is visible. Defaults to 'Hide MiniMap'
 
-`showText:` Text-String to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is hidden.
+`showText:` The text to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is hidden. Defaults to 'Show MiniMap'
 
 ##Building minified versions
 First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build 

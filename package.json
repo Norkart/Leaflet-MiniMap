@@ -1,6 +1,6 @@
 {
   "name": "leaflet-minimap",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "author": "Norkart AS",
   "description": "A plugin for Leaflet that provides a minimap in the corner of the map view.",
   "keywords": [
@@ -15,6 +15,7 @@
     "type": "git",
     "url": "https://github.com/Norkart/Leaflet-MiniMap.git"
   },
+  "main": "dist/Control.MiniMap.min.js",
   "homepage": "https://github.com/Norkart/Leaflet-MiniMap",
   "bugs": {
     "url": "https://github.com/Norkart/Leaflet-MiniMap/issues"
@@ -31,7 +32,7 @@
   },
   "scripts": {
     "build:js": "uglifyjs  --output dist/Control.MiniMap.min.js src/Control.MiniMap.js",
-    "build:css": "cleancss   --output dist/Control.MiniMap.min.css src/Control.MiniMap.css",
+    "build:css": "cleancss  --skip-rebase --output dist/Control.MiniMap.min.css src/Control.MiniMap.css",
     "build:img": "svgo src/images/toggle.svg dist/images/toggle.svg && node buildscripts/svgtopng.js",
     "build": "npm run build:css && npm run build:js && npm run build:img"
   }
