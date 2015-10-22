@@ -2,6 +2,9 @@
 
 Leaflet.MiniMap is a simple minimap control that you can drop into your leaflet map, and it will create a small map in the corner which shows the same as the main map with a set zoom offset. (By default it is -5.)
 
+[![npm version](https://badge.fury.io/js/leaflet-minimap.svg)](https://www.npmjs.com/package/leaflet-minimap)
+[![Bower version](https://badge.fury.io/bo/leaflet-minimap.svg)](https://github.com/Norkart/Leaflet-MiniMap)
+
 ## Using the MiniMap control
 
 The control can be inserted in two lines: First you have to construct a layer for it to use, and then you create and attach the minimap control. Don't reuse the layer you added to the main map, strange behaviour will ensue! Alternatively, you can pass in a LayerGroup with multiple layers (for example with overlays or suitably themed markers). Marker layers can't be reused either. (See issue #52 for a discussion of syncronising marker layers.)
