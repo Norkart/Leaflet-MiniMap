@@ -10,7 +10,7 @@ Leaflet.MiniMap is a simple minimap control that you can drop into your leaflet 
 The control can be inserted in two lines: First you have to construct a layer for it to use, and then you create and attach the minimap control. Don't reuse the layer you added to the main map, strange behaviour will ensue! Alternatively, you can pass in a LayerGroup with multiple layers (for example with overlays or suitably themed markers). Marker layers can't be reused either. (See issue #52 for a discussion of syncronising marker layers.)
 
 From the [example](http://norkart.github.com/Leaflet-MiniMap/example.html):
-    
+
     var osm2 = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 13, attribution: osmAttrib});
     var miniMap = new L.Control.MiniMap(osm2).addTo(map);
 
@@ -22,7 +22,7 @@ As the minimap control inherits from leaflet's control, positioning is handled a
 
     var MiniMap = require('leaflet-minimap');
     new MiniMap(layer, options).addTo(map);
-    
+
 If you prefer ES6 style (for example with babel):
 
     import MiniMap from 'leaflet-minimap';
@@ -33,7 +33,7 @@ If you prefer ES6 style (for example with babel):
     require(['leaflet-minimap'], function(MiniMap) {
         new Minimap(layer, options).addTo(map);
     });
-    
+
 ## Available Methods
 
 `changeLayer:` Swaps out the minimap layer for the one provided. See the _layerchange_ example for hints on good uses.
@@ -55,9 +55,11 @@ If you prefer ES6 style (for example with babel):
 
 `zoomLevelFixed:` Overrides the offset to apply a fixed zoom level to the minimap regardless of the main map zoom. Set it to any valid zoom level, if unset `zoomLevelOffset` is used instead.
 
+`centerFixed`: Applies a fixed position to the minimap regardless of the main map's view / position. Prevents panning the minimap, but does allow zooming (both in the minimap and the main map). If the minimap is zoomed, it will always zoom around the `centerFixed` point. You can pass in a LatLng object or a LatLng-like array. Defaults to false.
+
 `zoomAnimation:` Sets whether the minimap should have an animated zoom. (Will cause it to lag a bit after the movement of the main map.) Defaults to false.
 
-`toggleDisplay:` Sets whether the minimap should have a button to minimise it. Defaults to false. 
+`toggleDisplay:` Sets whether the minimap should have a button to minimise it. Defaults to false.
 
 `autoToggleDisplay:` Sets whether the minimap should hide automatically if the parent map bounds does not fit within the minimap bounds. Especially useful when 'zoomLevelFixed' is set.
 
@@ -74,5 +76,5 @@ If you prefer ES6 style (for example with babel):
 `showText:` The text to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is hidden. Defaults to 'Show MiniMap'
 
 ##Building minified versions
-First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build 
+First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build
 the minified js and css.
