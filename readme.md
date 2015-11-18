@@ -55,7 +55,7 @@ If you prefer ES6 style (for example with babel):
 
 `zoomLevelFixed:` Overrides the offset to apply a fixed zoom level to the minimap regardless of the main map zoom. Set it to any valid zoom level, if unset `zoomLevelOffset` is used instead.
 
-`centerFixed`: Applies a fixed position to the minimap regardless of the main map's view / position. Prevents panning the minimap, but does allow zooming (both in the minimap and the main map). If the minimap is zoomed, it will always zoom around the `centerFixed` point. You can pass in a LatLng object or a LatLng-like array. Defaults to false.
+`centerFixed`: Applies a fixed position to the minimap regardless of the main map's view / position. Prevents panning the minimap, but does allow zooming (both in the minimap and the main map). If the minimap is zoomed, it will always zoom around the `centerFixed` point. You can pass in a LatLng-equivalent object. Defaults to false.
 
 `zoomAnimation:` Sets whether the minimap should have an animated zoom. (Will cause it to lag a bit after the movement of the main map.) Defaults to false.
 
