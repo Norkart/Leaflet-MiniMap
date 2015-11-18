@@ -25,7 +25,7 @@
 			toggleDisplay: false,
 			zoomLevelOffset: -5,
 			zoomLevelFixed: false,
-      fixedCenter: false,
+      centerFixed: false,
 			zoomAnimation: false,
 			autoToggleDisplay: false,
 			width: 150,
@@ -60,13 +60,13 @@
 			this._miniMap = new L.Map(this._container,
 			{
 				attributionControl: false,
-        dragging: !this.options.fixedCenter,
+        dragging: !this.options.centerFixed,
 				zoomControl: false,
 				zoomAnimation: this.options.zoomAnimation,
 				autoToggleDisplay: this.options.autoToggleDisplay,
-				touchZoom: this.options.fixedCenter ? 'center' : !this._isZoomLevelFixed(),
-				scrollWheelZoom: this.options.fixedCenter ? 'center' : !this._isZoomLevelFixed(),
-				doubleClickZoom: this.options.fixedCenter ? 'center' : !this._isZoomLevelFixed(),
+				touchZoom: this.options.centerFixed ? 'center' : !this._isZoomLevelFixed(),
+				scrollWheelZoom: this.options.centerFixed ? 'center' : !this._isZoomLevelFixed(),
+				doubleClickZoom: this.options.centerFixed ? 'center' : !this._isZoomLevelFixed(),
 				boxZoom: !this._isZoomLevelFixed(),
 				crs: map.options.crs
 			});
@@ -101,7 +101,7 @@
 		addTo: function (map) {
 			L.Control.prototype.addTo.call(this, map);
 
-      var center = this.options.fixedCenter || this._mainMap.getCenter();
+      var center = this.options.centerFixed || this._mainMap.getCenter();
 			this._miniMap.setView(center, this._decideZoom(true));
 			this._setDisplay(this._decideMinimized());
 			return this;
@@ -199,7 +199,7 @@
 
 		_onMainMapMoved: function (e) {
       if (!this._miniMapMoving) {
-        var center = this.options.fixedCenter || this._mainMap.getCenter();
+        var center = this.options.centerFixed || this._mainMap.getCenter();
 
         this._mainMapMoving = true;
         this._miniMap.setView(center, this._decideZoom(true));
@@ -215,7 +215,7 @@
 		},
 
 		_onMiniMapMoveStarted:function (e) {
-      if (!this.options.fixedCenter) {
+      if (!this.options.centerFixed) {
         var lastAimingRect = this._aimingRect.getBounds();
         var sw = this._miniMap.latLngToContainerPoint(lastAimingRect.getSouthWest());
         var ne = this._miniMap.latLngToContainerPoint(lastAimingRect.getNorthEast());
@@ -224,7 +224,7 @@
 		},
 
 		_onMiniMapMoving: function (e) {
-      if (!this.options.fixedCenter) {
+      if (!this.options.centerFixed) {
         if (!this._mainMapMoving && this._lastAimingRectPosition) {
           this._shadowRect.setBounds(new L.LatLngBounds(this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.sw),this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.ne)));
           this._shadowRect.setStyle({opacity:1,fillOpacity:0.3});
@@ -234,7 +234,7 @@
 
 		_onMiniMapMoved: function (e) {
       if (!this._mainMapMoving) {
-        var center = this.options.fixedCenter || this._mainMap.getCenter();
+        var center = this.options.centerFixed || this._mainMap.getCenter();
 
         this._miniMapMoving = true;
         this._mainMap.setView(this._mainMap.getCenter(), this._decideZoom(false));
