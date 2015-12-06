@@ -1,22 +1,22 @@
 // Following https://github.com/Leaflet/Leaflet/blob/master/PLUGIN-GUIDE.md
 (function (factory, window) {
 
-    // define an AMD module that relies on 'leaflet'
-    if (typeof define === 'function' && define.amd) {
-        define(['leaflet'], factory);
+	// define an AMD module that relies on 'leaflet'
+	if (typeof define === 'function' && define.amd) {
+		define(['leaflet'], factory);
 
-    // define a Common JS module that relies on 'leaflet'
-    } else if (typeof exports === 'object') {
-        module.exports = factory(require('leaflet'));
-    }
+	// define a Common JS module that relies on 'leaflet'
+	} else if (typeof exports === 'object') {
+		module.exports = factory(require('leaflet'));
+	}
 
-    // attach your plugin to the global 'L' variable
-    if (typeof window !== 'undefined' && window.L) {
-        window.L.Control.MiniMap = factory(L);
-        window.L.control.minimap = function (layer, options) {
-        	return new window.L.Control.MiniMap(layer, options);
-        };
-    }
+	// attach your plugin to the global 'L' variable
+	if (typeof window !== 'undefined' && window.L) {
+		window.L.Control.MiniMap = factory(L);
+		window.L.control.minimap = function (layer, options) {
+			return new window.L.Control.MiniMap(layer, options);
+		};
+	}
 }(function (L) {
 
 	var MiniMap = L.Control.extend({
@@ -25,7 +25,7 @@
 			toggleDisplay: false,
 			zoomLevelOffset: -5,
 			zoomLevelFixed: false,
-      centerFixed: false,
+			centerFixed: false,
 			zoomAnimation: false,
 			autoToggleDisplay: false,
 			width: 150,
@@ -60,7 +60,7 @@
 			this._miniMap = new L.Map(this._container,
 			{
 				attributionControl: false,
-        dragging: !this.options.centerFixed,
+				dragging: !this.options.centerFixed,
 				zoomControl: false,
 				zoomAnimation: this.options.zoomAnimation,
 				autoToggleDisplay: this.options.autoToggleDisplay,
@@ -101,7 +101,7 @@
 		addTo: function (map) {
 			L.Control.prototype.addTo.call(this, map);
 
-      var center = this.options.centerFixed || this._mainMap.getCenter();
+			var center = this.options.centerFixed || this._mainMap.getCenter();
 			this._miniMap.setView(center, this._decideZoom(true));
 			this._setDisplay(this._decideMinimized());
 			return this;
@@ -116,15 +116,15 @@
 		},
 
 		changeLayer: function (layer) {
-	           this._miniMap.removeLayer(this._layer);
-	           this._layer = layer;
-	           this._miniMap.addLayer(this._layer);
-	    },
+			this._miniMap.removeLayer(this._layer);
+			this._layer = layer;
+			this._miniMap.addLayer(this._layer);
+		},
 
 		_addToggleButton: function () {
 			this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(
-					'', this.options.strings.hideText, ('leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-'
-					+ this.options.position), this._container, this._toggleDisplayButtonClicked, this) : undefined;
+				'', this.options.strings.hideText, ('leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-'
+				+ this.options.position), this._container, this._toggleDisplayButtonClicked, this) : undefined;
 
 			this._toggleDisplayButton.style.width = this.options.collapsedWidth + 'px';
 			this._toggleDisplayButton.style.height = this.options.collapsedHeight + 'px';
@@ -153,8 +153,7 @@
 			if (!this._minimized) {
 				this._minimize();
 				this._toggleDisplayButton.title = this.options.strings.showText;
-			}
-			else {
+			} else {
 				this._restore();
 				this._toggleDisplayButton.title = this.options.strings.hideText;
 			}
@@ -164,8 +163,7 @@
 			if (minimize != this._minimized) {
 				if (!this._minimized) {
 					this._minimize();
-				}
-				else {
+				} else {
 					this._restore();
 				}
 			}
@@ -177,8 +175,7 @@
 				this._container.style.width = this.options.collapsedWidth + 'px';
 				this._container.style.height = this.options.collapsedHeight + 'px';
 				this._toggleDisplayButton.className += (' minimized-' + this.options.position);
-			}
-			else {
+			} else {
 				this._container.style.display = 'none';
 			}
 			this._minimized = true;
@@ -189,25 +186,24 @@
 				this._container.style.width = this.options.width + 'px';
 				this._container.style.height = this.options.height + 'px';
 				this._toggleDisplayButton.className = this._toggleDisplayButton.className
-						.replace('minimized-'  + this.options.position, '');
-			}
-			else {
+					.replace('minimized-'	+ this.options.position, '');
+			} else {
 				this._container.style.display = 'block';
 			}
 			this._minimized = false;
 		},
 
 		_onMainMapMoved: function (e) {
-      if (!this._miniMapMoving) {
-        var center = this.options.centerFixed || this._mainMap.getCenter();
+			if (!this._miniMapMoving) {
+				var center = this.options.centerFixed || this._mainMap.getCenter();
 
-        this._mainMapMoving = true;
-        this._miniMap.setView(center, this._decideZoom(true));
-        this._setDisplay(this._decideMinimized());
-      } else {
-        this._miniMapMoving = false;
-      }
-      this._aimingRect.setBounds(this._mainMap.getBounds());
+				this._mainMapMoving = true;
+				this._miniMap.setView(center, this._decideZoom(true));
+				this._setDisplay(this._decideMinimized());
+			} else {
+				this._miniMapMoving = false;
+			}
+			this._aimingRect.setBounds(this._mainMap.getBounds());
 		},
 
 		_onMainMapMoving: function (e) {
@@ -215,39 +211,39 @@
 		},
 
 		_onMiniMapMoveStarted:function (e) {
-      if (!this.options.centerFixed) {
-        var lastAimingRect = this._aimingRect.getBounds();
-        var sw = this._miniMap.latLngToContainerPoint(lastAimingRect.getSouthWest());
-        var ne = this._miniMap.latLngToContainerPoint(lastAimingRect.getNorthEast());
-        this._lastAimingRectPosition = {sw:sw,ne:ne};
-      }
+			if (!this.options.centerFixed) {
+				var lastAimingRect = this._aimingRect.getBounds();
+				var sw = this._miniMap.latLngToContainerPoint(lastAimingRect.getSouthWest());
+				var ne = this._miniMap.latLngToContainerPoint(lastAimingRect.getNorthEast());
+				this._lastAimingRectPosition = {sw:sw,ne:ne};
+			}
 		},
 
 		_onMiniMapMoving: function (e) {
-      if (!this.options.centerFixed) {
-        if (!this._mainMapMoving && this._lastAimingRectPosition) {
-          this._shadowRect.setBounds(new L.LatLngBounds(this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.sw),this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.ne)));
-          this._shadowRect.setStyle({opacity:1,fillOpacity:0.3});
-        }
-      }
+			if (!this.options.centerFixed) {
+				if (!this._mainMapMoving && this._lastAimingRectPosition) {
+					this._shadowRect.setBounds(new L.LatLngBounds(this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.sw),this._miniMap.containerPointToLatLng(this._lastAimingRectPosition.ne)));
+					this._shadowRect.setStyle({opacity:1,fillOpacity:0.3});
+				}
+			}
 		},
 
 		_onMiniMapMoved: function (e) {
-      if (!this._mainMapMoving) {
-        var center = this.options.centerFixed || this._mainMap.getCenter();
+			if (!this._mainMapMoving) {
+				var center = this.options.centerFixed || this._mainMap.getCenter();
 
-        this._miniMapMoving = true;
-        this._mainMap.setView(this._mainMap.getCenter(), this._decideZoom(false));
-        this._shadowRect.setStyle({opacity:0,fillOpacity:0});
-      } else {
-        this._mainMapMoving = false;
-      }
+				this._miniMapMoving = true;
+				this._mainMap.setView(this._mainMap.getCenter(), this._decideZoom(false));
+				this._shadowRect.setStyle({opacity:0,fillOpacity:0});
+			} else {
+				this._mainMapMoving = false;
+			}
 		},
 
-    _isZoomLevelFixed:function() {
-      var zoomLevelFixed = this.options.zoomLevelFixed;
-      return this._isDefined(zoomLevelFixed) && this._isInteger(zoomLevelFixed);
-    },
+		_isZoomLevelFixed:function() {
+			var zoomLevelFixed = this.options.zoomLevelFixed;
+			return this._isDefined(zoomLevelFixed) && this._isInteger(zoomLevelFixed);
+		},
 
 		_decideZoom: function (fromMaintoMini) {
 			if (!this._isZoomLevelFixed()){
@@ -298,15 +294,15 @@
 			}
 
 			return this._minimized;
-    },
+		},
 
-    _isInteger:function(value) {
-      return typeof value === 'number';
-    },
+		_isInteger:function(value) {
+			return typeof value === 'number';
+		},
 
-    _isDefined:function(value) {
-      return typeof value !== 'undefined';
-    },
+		_isDefined:function(value) {
+			return typeof value !== 'undefined';
+		},
 	});
 
 	L.Map.mergeOptions({
