@@ -1,4 +1,4 @@
-// Following https:// github.com/Leaflet/Leaflet/blob/master/PLUGIN-GUIDE.md
+// Following https://github.com/Leaflet/Leaflet/blob/master/PLUGIN-GUIDE.md
 (function (factory, window) {
 
 	// define an AMD module that relies on 'leaflet'
