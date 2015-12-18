@@ -86,4 +86,4 @@ require(['leaflet-minimap'], function(MiniMap) {
 ## Building minified versions
 First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build
 the minified js and css. Use `npm test` to lint the code so you can check that it follows our
-coding standard.
+coding standard. (Any pull requests will be checked this way by the build server.)
