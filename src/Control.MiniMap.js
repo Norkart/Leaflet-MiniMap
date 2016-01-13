@@ -38,8 +38,9 @@
 		},
 
 		// layer is the map layer to be shown in the minimap
-		initialize: function (layer, options) {
+		initialize: function (layer, options, mapoptions) {
 			L.Util.setOptions(this, options);
+			this.mapoptions = mapoptions || {};  // Allows definition / override of Leaflet map options.
 			// Make sure the aiming rects are non-clickable even if the user tries to set them clickable (most likely by forgetting to specify them false)
 			this.options.aimingRectOptions.clickable = false;
 			this.options.shadowRectOptions.clickable = false;
@@ -57,8 +58,7 @@
 			L.DomEvent.disableClickPropagation(this._container);
 			L.DomEvent.on(this._container, 'mousewheel', L.DomEvent.stopPropagation);
 
-			this._miniMap = new L.Map(this._container,
-			{
+			var mapoptions = {
 				attributionControl: false,
 				dragging: !this.options.centerFixed,
 				zoomControl: false,
@@ -69,7 +69,10 @@
 				doubleClickZoom: this.options.centerFixed ? 'center' : !this._isZoomLevelFixed(),
 				boxZoom: !this._isZoomLevelFixed(),
 				crs: map.options.crs
-			});
+			};
+			mapoptions = L.Util.extend(mapoptions, this.mapoptions);
+
+			this._miniMap = new L.Map(this._container, mapoptions);
 
 			this._miniMap.addLayer(this._layer);
 
