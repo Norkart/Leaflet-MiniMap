@@ -77,6 +77,8 @@ require(['leaflet-minimap'], function(MiniMap) {
 
 `strings`: Overrides the default strings allowing for translation. See below for available strings and `example/example_i18n.html` for an example.
 
+`mapOptions`: Sets Leaflet options for the MiniMap map. It does not override the MiniMap default map options but extends them.
+
 ### Available Strings
 
 `hideText`: The text to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is visible. Defaults to 'Hide MiniMap'

@@ -34,7 +34,8 @@
 			collapsedHeight: 19,
 			aimingRectOptions: {color: '#ff7800', weight: 1, clickable: false},
 			shadowRectOptions: {color: '#000000', weight: 1, clickable: false, opacity: 0, fillOpacity: 0},
-			strings: {hideText: 'Hide MiniMap', showText: 'Show MiniMap'}
+			strings: {hideText: 'Hide MiniMap', showText: 'Show MiniMap'},
+			mapOptions: {}  // Allows definition / override of Leaflet map options.
 		},
 
 		// layer is the map layer to be shown in the minimap
@@ -57,8 +58,7 @@
 			L.DomEvent.disableClickPropagation(this._container);
 			L.DomEvent.on(this._container, 'mousewheel', L.DomEvent.stopPropagation);
 
-			this._miniMap = new L.Map(this._container,
-			{
+			var mapOptions = {
 				attributionControl: false,
 				dragging: !this.options.centerFixed,
 				zoomControl: false,
@@ -69,7 +69,10 @@
 				doubleClickZoom: this.options.centerFixed ? 'center' : !this._isZoomLevelFixed(),
 				boxZoom: !this._isZoomLevelFixed(),
 				crs: map.options.crs
-			});
+			};
+			mapOptions = L.Util.extend(this.options.mapOptions, mapOptions);  // merge with priority of the local mapOptions object.
+
+			this._miniMap = new L.Map(this._container, mapOptions);
 
 			this._miniMap.addLayer(this._layer);
 
