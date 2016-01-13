@@ -34,13 +34,13 @@
 			collapsedHeight: 19,
 			aimingRectOptions: {color: '#ff7800', weight: 1, clickable: false},
 			shadowRectOptions: {color: '#000000', weight: 1, clickable: false, opacity: 0, fillOpacity: 0},
-			strings: {hideText: 'Hide MiniMap', showText: 'Show MiniMap'}
+			strings: {hideText: 'Hide MiniMap', showText: 'Show MiniMap'},
+			mapOptions: {}  // Allows definition / override of Leaflet map options.
 		},
 
 		// layer is the map layer to be shown in the minimap
-		initialize: function (layer, options, mapoptions) {
+		initialize: function (layer, options) {
 			L.Util.setOptions(this, options);
-			this.mapoptions = mapoptions || {};  // Allows definition / override of Leaflet map options.
 			// Make sure the aiming rects are non-clickable even if the user tries to set them clickable (most likely by forgetting to specify them false)
 			this.options.aimingRectOptions.clickable = false;
 			this.options.shadowRectOptions.clickable = false;
@@ -58,7 +58,7 @@
 			L.DomEvent.disableClickPropagation(this._container);
 			L.DomEvent.on(this._container, 'mousewheel', L.DomEvent.stopPropagation);
 
-			var mapoptions = {
+			var mapOptions = {
 				attributionControl: false,
 				dragging: !this.options.centerFixed,
 				zoomControl: false,
@@ -70,9 +70,9 @@
 				boxZoom: !this._isZoomLevelFixed(),
 				crs: map.options.crs
 			};
-			mapoptions = L.Util.extend(mapoptions, this.mapoptions);
+			mapOptions = L.Util.extend(this.options.mapOptions, mapOptions);  // merge with priority of the local mapOptions object.
 
-			this._miniMap = new L.Map(this._container, mapoptions);
+			this._miniMap = new L.Map(this._container, mapOptions);
 
 			this._miniMap.addLayer(this._layer);
 
