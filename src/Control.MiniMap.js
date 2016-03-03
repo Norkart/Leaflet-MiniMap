@@ -28,6 +28,7 @@
 			centerFixed: false,
 			zoomAnimation: false,
 			autoToggleDisplay: false,
+			minimized: false,
 			width: 150,
 			height: 150,
 			collapsedWidth: 19,
@@ -82,7 +83,7 @@
 
 			// Keep a record of this to prevent auto toggling when the user explicitly doesn't want it.
 			this._userToggledDisplay = false;
-			this._minimized = false;
+			this._minimized = this.options.minimized;
 
 			if (this.options.toggleDisplay) {
 				this._addToggleButton();

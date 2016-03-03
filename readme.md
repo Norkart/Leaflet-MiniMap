@@ -71,6 +71,8 @@ require(['leaflet-minimap'], function(MiniMap) {
 
 `autoToggleDisplay`: Sets whether the minimap should hide automatically if the parent map bounds does not fit within the minimap bounds. Especially useful when 'zoomLevelFixed' is set.
 
+`minimized`: Sets whether the minimap should start in a minimized position.
+
 `aimingRectOptions`: Sets the style of the aiming rectangle by passing in a [Path.Options object](http://leafletjs.com/reference.html#path-options). (Clickable will always be overridden and set to false.)
 
 `shadowRectOptions`: Sets the style of the aiming shadow rectangle by passing in a [Path.Options object](http://leafletjs.com/reference.html#path-options). (Clickable will always be overridden and set to false.)
