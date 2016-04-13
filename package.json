@@ -21,7 +21,7 @@
     "url": "https://github.com/Norkart/Leaflet-MiniMap/issues"
   },
   "dependencies": {
-    "leaflet": ">=1.0.0-b1"
+    "leaflet": ">=1.0.0-b2"
   },
   "devDependencies": {
     "uglify-js": "2.4.16",
