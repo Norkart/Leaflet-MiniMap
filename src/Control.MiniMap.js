@@ -83,7 +83,7 @@
 
 			// Keep a record of this to prevent auto toggling when the user explicitly doesn't want it.
 			this._userToggledDisplay = false;
-			this._minimized = this.options.minimized;
+			this._minimized = false;
 
 			if (this.options.toggleDisplay) {
 				this._addToggleButton();
@@ -107,7 +107,7 @@
 
 			var center = this.options.centerFixed || this._mainMap.getCenter();
 			this._miniMap.setView(center, this._decideZoom(true));
-			this._setDisplay(this._decideMinimized());
+			this._setDisplay(this.options.minimized);
 			return this;
 		},
 
