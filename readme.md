@@ -20,7 +20,8 @@ var miniMap = new L.Control.MiniMap(osm2).addTo(map);
 
 As the minimap control inherits from leaflet's control, positioning is handled automatically by leaflet. However, you can still style the minimap and set its size by modifying the css file.
 
-**Note:** Leaflet version 0.7.3 or higher is required.
+**Note:** Leaflet version 0.7.7 or higher is required, but the plugin has been
+tested and verified to work fine with Leaflet 1.0.0-beta2.
 
 ### Example usage in CommonJS compatible environments (Node/Browserify)
 
