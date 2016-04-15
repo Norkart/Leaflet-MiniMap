@@ -36,7 +36,8 @@
     "build:css": "cleancss  --skip-rebase --output dist/Control.MiniMap.min.css src/Control.MiniMap.css",
     "build:img": "svgo src/images/toggle.svg dist/images/toggle.svg && node buildscripts/svgtopng.js",
     "build": "npm run build:css && npm run build:js && npm run build:img",
-    "test": "happiness src/**/*.js"
+    "test": "happiness src/**/*.js",
+    "preversion": "npm test && npm run build"
   },
   "happiness": {
     "globals": [
