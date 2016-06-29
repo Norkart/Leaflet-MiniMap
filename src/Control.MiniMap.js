@@ -155,11 +155,9 @@
 		_toggleDisplayButtonClicked: function () {
 			this._userToggledDisplay = true;
 			if (!this._minimized) {
-				this._minimize();
-				this._toggleDisplayButton.title = this.options.strings.showText;
+				this._minimize();				
 			} else {
 				this._restore();
-				this._toggleDisplayButton.title = this.options.strings.hideText;
 			}
 		},
 
@@ -179,6 +177,7 @@
 				this._container.style.width = this.options.collapsedWidth + 'px';
 				this._container.style.height = this.options.collapsedHeight + 'px';
 				this._toggleDisplayButton.className += (' minimized-' + this.options.position);
+				this._toggleDisplayButton.title = this.options.strings.showText;
 			} else {
 				this._container.style.display = 'none';
 			}
@@ -191,6 +190,7 @@
 				this._container.style.height = this.options.height + 'px';
 				this._toggleDisplayButton.className = this._toggleDisplayButton.className
 					.replace('minimized-'	+ this.options.position, '');
+				this._toggleDisplayButton.title = this.options.strings.hideText;
 			} else {
 				this._container.style.display = 'block';
 			}
