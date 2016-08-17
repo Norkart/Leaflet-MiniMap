@@ -155,7 +155,7 @@
 		_toggleDisplayButtonClicked: function () {
 			this._userToggledDisplay = true;
 			if (!this._minimized) {
-				this._minimize();				
+				this._minimize();
 			} else {
 				this._restore();
 			}
