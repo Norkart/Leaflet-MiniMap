@@ -134,9 +134,9 @@
 			this._toggleDisplayButton.style.height = this.options.collapsedHeight + 'px';
 		},
 
-		_titleText: function() {
+		_titleText: function () {
 			let titleText = this.options.strings.hideText;
-			if(this.options.minimized) {
+			if (this.options.minimized) {
 				titleText = this.options.strings.showText;
 			}
 			return titleText;
