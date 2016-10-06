@@ -20,12 +20,10 @@
   "bugs": {
     "url": "https://github.com/Norkart/Leaflet-MiniMap/issues"
   },
-  "dependencies": {
-    "leaflet": ">=0.7.7"
-  },
   "devDependencies": {
     "clean-css": "3.0.7",
     "happiness": "^1.0.7",
+    "leaflet": ">=0.7.7",
     "ncp": "1.0.1",
     "svg2png": "1.1.0",
     "svgo": "0.5.0",
