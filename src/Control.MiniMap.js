@@ -138,7 +138,7 @@
 			if (this.options.minimized) {
 				return this.options.strings.showText;
 			} else {
-				return this.options.strings.hideText
+				return this.options.strings.hideText;
 			}
 		},
 
