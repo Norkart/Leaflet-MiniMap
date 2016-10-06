@@ -127,19 +127,19 @@
 
 		_addToggleButton: function () {
 			this._toggleDisplayButton = this.options.toggleDisplay ? this._createButton(
-				'', this._titleText(), ('leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-' +
+				'', this._toggleButtonInitialTitleText(), ('leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-' +
 				this.options.position), this._container, this._toggleDisplayButtonClicked, this) : undefined;
 
 			this._toggleDisplayButton.style.width = this.options.collapsedWidth + 'px';
 			this._toggleDisplayButton.style.height = this.options.collapsedHeight + 'px';
 		},
 
-		_titleText: function () {
-			let titleText = this.options.strings.hideText;
+		_toggleButtonInitialTitleText: function () {
 			if (this.options.minimized) {
-				titleText = this.options.strings.showText;
+				return this.options.strings.showText;
+			} else {
+				return this.options.strings.hideText
 			}
-			return titleText;
 		},
 
 		_createButton: function (html, title, className, container, fn, context) {
