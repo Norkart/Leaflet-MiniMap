@@ -6,6 +6,7 @@ Leaflet.MiniMap is a simple minimap control that you can drop into your leaflet 
 [![Bower version](https://badge.fury.io/bo/leaflet-minimap.svg)](https://github.com/Norkart/Leaflet-MiniMap)
 [![js-happiness-style](https://img.shields.io/badge/code%20style-happiness-brightgreen.svg?style=flat-square)](https://github.com/JedWatson/happiness)
 [![Build Status](https://travis-ci.org/Norkart/Leaflet-MiniMap.svg)](https://travis-ci.org/Norkart/Leaflet-MiniMap)
+[![CDNJS](https://img.shields.io/cdnjs/v/leaflet-minimap.svg)](https://cdnjs.com/libraries/leaflet-minimap)
 
 ## Using the MiniMap control
 
