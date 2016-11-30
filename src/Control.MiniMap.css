@@ -6,6 +6,15 @@
 	transition: all .6s;
 }
 
+.leaflet-control-minimap.leaflet-control-minimap-rts {
+    border:none;
+    cursor:crosshair;
+}
+
+.leaflet-control-minimap.mousedown {
+    cursor:move;
+}
+
 .leaflet-control-minimap a {
 	background-color: rgba(255, 255, 255, 1.0);
 	background-repeat: no-repeat;
