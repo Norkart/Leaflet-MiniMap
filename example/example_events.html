@@ -33,10 +33,10 @@
 		var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: true }).addTo(map);
 
 		miniMap.on("toggle", function(data) {
-			console.log("Listen for `toggle` event: miniMap is " + (data.minimized ? "minimized" : "restore"));
+			console.log("Listen for `toggle` event: miniMap is " + (data.minimized ? "minimize" : "restore"));
 		});
-		miniMap.on("minimized", function() {
-			console.log("Listen for `minimized` event");
+		miniMap.on("minimize", function() {
+			console.log("Listen for `minimize` event");
 		});
 		miniMap.on("restore", function() {
 			console.log("Listen for `restore` event");

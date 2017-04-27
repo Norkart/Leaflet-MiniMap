@@ -321,7 +321,7 @@
 		},
 
 		_onToggle: function () {
-			L.Util.requestAnimFrame(function() {
+			L.Util.requestAnimFrame(function () {
 				L.DomEvent.on(this._container, 'transitionend', this._fireToggleEvents, this);
 				if (!L.Browser.any3d) {
 					L.Util.requestAnimFrame(this._fireToggleEvents, this);
@@ -332,8 +332,8 @@
 		_fireToggleEvents: function () {
 			L.DomEvent.off(this._container, 'transitionend', this._fireToggleEvents, this);
 			var data = { minimized: this._minimized };
-			this.fire(this._minimized ? "minimized" : "restore", data);
-			this.fire("toggle", data);
+			this.fire(this._minimized ? 'minimize' : 'restore', data);
+			this.fire('toggle', data);
 		}
 	});
 

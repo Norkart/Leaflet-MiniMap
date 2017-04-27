@@ -91,7 +91,7 @@ require(['leaflet-minimap'], function(MiniMap) {
 
 ### Available Events
 
-The MiniMap fires `minimized`, `restore`  events and `toggle` for both.
+The MiniMap fires `minimize`, `restore`  events and `toggle` for both.
 
 ## Building minified versions
 First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build
