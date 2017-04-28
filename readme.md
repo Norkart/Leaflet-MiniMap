@@ -89,6 +89,10 @@ require(['leaflet-minimap'], function(MiniMap) {
 
 `showText`: The text to be displayed as Tooltip when hovering over the toggle button on the MiniMap and it is hidden. Defaults to 'Show MiniMap'
 
+### Available Events
+
+The MiniMap fires `minimize`, `restore`  events and `toggle` for both.
+
 ## Building minified versions
 First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build
 the minified js and css. Use `npm test` to lint the code so you can check that it follows our

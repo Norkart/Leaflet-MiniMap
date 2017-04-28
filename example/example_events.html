@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MiniMap Demo Events</title>
+	<meta charset="utf-8" />
+
+	<link rel="stylesheet" href="./fullscreen.css" />
+
+	<!-- Leaflet -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" type="text/javascript"></script>
+
+	<!-- Leaflet Plugins -->
+	<link rel="stylesheet" href="../src/Control.MiniMap.css" />
+	<script src="../src/Control.MiniMap.js" type="text/javascript"></script>
+
+	<style>
+		.toggle {
+			background: orange !important;
+		}
+		.toggle:hover{
+			background: darkorange !important;
+		}
+	</style>
+
+</head>
+<body>
+<div id="map" ></div>
+
+<script type="text/javascript">
+
+    var map = new L.Map('map');
+    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osmAttrib='Map data &copy; OpenStreetMap contributors';
+    var osm = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
+
+    map.addLayer(osm);
+    map.setView(new L.LatLng(59.92448055859924, 10.758276373601069),10);
+
+    //Plugin magic goes here! Note that you cannot use the same layer object again, as that will confuse the two map controls
+    var osm2 = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 13, attribution: osmAttrib });
+    var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: true }).addTo(map);
+
+    miniMap.on("toggle", function(data) {
+        console.log("Listen for `toggle` event: miniMap is " + (data.minimized ? "minimize" : "restore"));
+    });
+    miniMap.on("minimize", function() {
+        console.log("Listen for `minimize` event");
+    });
+    miniMap.on("restore", function() {
+        console.log("Listen for `restore` event");
+    });
+
+    var actionButton = new (L.Control.extend({
+        options: {
+            position: 'topleft',
+            html: "#",
+			toggleClass: "toggle",
+			status: false,
+			listeners: []
+        },
+        initialize: function (options) {
+            L.setOptions(this, options);
+            this._status = this.options.status;
+        },
+
+        onAdd: function () {
+            var container = L.DomUtil.create('div', 'leaflet-control-actionbtn leaflet-bar leaflet-control');
+            var link = this._link = L.DomUtil.create('a', '', container);
+            link.href = '#';
+            link.innerHTML = this.options.html;
+            link.title = this.options.title || this.options.html;
+            L.DomEvent.on(link, 'click', this._onBtnClick, this);
+            if (this.options.status) {
+                this._toggle();
+			}
+			this._addListeners();
+            return container;
+        },
+
+        toggle: function () {
+			this._toggle();
+			if (this.options.action) {
+			    this._removeListeners();
+                this._forListeners(null, function (listener) {
+                    listener[0].once(listener[1], this._addListeners, this);
+                });
+                this.options.action.call(this, this._status);
+            }
+		},
+
+		_toggle: function () {
+            this._status = !this._status;
+            if (!this._status) {
+                L.DomUtil.addClass(this._link, this.options.toggleClass);
+            } else {
+                L.DomUtil.removeClass(this._link, this.options.toggleClass);
+            }
+		},
+
+		_addListeners: function () {
+            this._forListeners();
+		},
+
+        _removeListeners: function () {
+            this._forListeners(true);
+        },
+
+		_forListeners: function (off, func) {
+            if (this.options.listeners.length) {
+                for (var fry = 0; fry < this.options.listeners.length; fry++) {
+                    var listener = this.options.listeners[fry];
+                    var action = listener[0] && listener[0][off ? "off" : "on"];
+                    if (action && typeof listener[1] === 'string') {
+                        if (func) {
+                            func.call(this, listener);
+                        } else {
+                            action.call(listener[0], listener[1], this._toggle, this);
+						}
+                    }
+                }
+            }
+		},
+
+        _onBtnClick: function (e) {
+            L.DomEvent.stop(e);
+            this.toggle();
+        }
+    }))({
+        action: function() { miniMap._toggleDisplayButtonClicked(); },
+        status: !miniMap._minimized,
+		html: "MM",
+		listeners: [[miniMap, "toggle"]]
+    });
+    actionButton.addTo(map);
+
+
+</script>
+</body>
+</html>
