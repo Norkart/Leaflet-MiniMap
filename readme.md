@@ -97,3 +97,7 @@ The MiniMap fires `minimize`, `restore`  events and `toggle` for both.
 First, install node.js on your system. Then run `npm install` to get the dependencies, and `npm build` to build
 the minified js and css. Use `npm test` to lint the code so you can check that it follows our
 coding standard. (Any pull requests will be checked this way by the build server.)
+
+## Loading minified version through node modules
+Node modules does not link css to minified version directly. 
+Add`require('../../node_modules/leaflet-minimap/dist/Control.MiniMap.min.css');` to the code.
