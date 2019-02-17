@@ -36,8 +36,8 @@
 			height: 150,
 			collapsedWidth: 19,
 			collapsedHeight: 19,
-			aimingRectOptions: {color: '#ff7800', weight: 1, clickable: false},
-			shadowRectOptions: {color: '#000000', weight: 1, clickable: false, opacity: 0, fillOpacity: 0},
+			aimingRectOptions: {color: '#ff7800', weight: 1, interactive: false},
+			shadowRectOptions: {color: '#000000', weight: 1, interactive: false, opacity: 0, fillOpacity: 0},
 			strings: {hideText: 'Hide MiniMap', showText: 'Show MiniMap'},
 			mapOptions: {}  // Allows definition / override of Leaflet map options.
 		},
@@ -46,8 +46,8 @@
 		initialize: function (layer, options) {
 			L.Util.setOptions(this, options);
 			// Make sure the aiming rects are non-clickable even if the user tries to set them clickable (most likely by forgetting to specify them false)
-			this.options.aimingRectOptions.clickable = false;
-			this.options.shadowRectOptions.clickable = false;
+			this.options.aimingRectOptions.interactive = false;
+			this.options.shadowRectOptions.interactive = false;
 			this._layer = layer;
 		},
 
