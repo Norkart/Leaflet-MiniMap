@@ -1,7 +1,7 @@
-var svg2png = require('svg2png');
-var ncp = require('ncp');
-var path = require('path');
+const fs = require("pn/fs"); // https://www.npmjs.com/package/pn
+const svg2png = require("svg2png");
 
-svg2png(path.resolve('src/images/toggle.svg'), path.resolve('src/images/toggle.png'), 1.0, function (err) {
-	ncp('src/images/toggle.png', 'dist/images/toggle.png');
-});
+fs.readFile("src/images/toggle.svg")
+    .then(svg2png)
+    .then(buffer => fs.writeFile("dist/images/toggle.png", buffer))
+    .catch(e => console.error(e));
