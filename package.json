@@ -20,19 +20,20 @@
   "bugs": {
     "url": "https://github.com/Norkart/Leaflet-MiniMap/issues"
   },
+  "dependencies": {
+    "leaflet": "^1.0.3"
+  },
   "devDependencies": {
-    "clean-css": "3.0.7",
+    "clean-css-cli": "^4.2.1",
     "happiness": "^1.0.7",
-    "leaflet": ">=1.0.3",
-    "ncp": "1.0.1",
-    "svg2png": "1.1.0",
-    "svgo": "0.5.0",
-    "uglify-js": "2.6.0"
+    "svg2png": "^4.1.1",
+    "svgo": "^1.2.0",
+    "uglify-js": "^3.4.10"
   },
   "scripts": {
     "build:js": "uglifyjs  --output dist/Control.MiniMap.min.js src/Control.MiniMap.js",
     "build:css": "cleancss  --skip-rebase --output dist/Control.MiniMap.min.css src/Control.MiniMap.css",
-    "build:img": "svgo src/images/toggle.svg dist/images/toggle.svg && node buildscripts/svgtopng.js",
+    "build:img": "svgo src/images/toggle.svg -o dist/images/toggle.svg && node buildscripts/svgtopng.js",
     "build": "npm run build:css && npm run build:js && npm run build:img",
     "test": "happiness src/**/*.js",
     "preversion": "npm test && npm run build"
